@@ -1,13 +1,332 @@
 <html>
     <head>
+        <title>HQ Developer Guide</title>
+        <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+        <link rel="stylesheet" href="styles.css">
         <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
         <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css"/>
-        <title>HQ API Entities</title>
     </head>
     <body>
+        <header class="header _table">
+            <a class="portal" href="https://developer.hellohq.io">
+              <img class="_cell logo" src="img/dev.svg" border="0">
+            </a>
+            <nav class="nav _cell">
+              <a class="tab _cell _text" onclick="go_to_docs()">REST API Documentation</a>
+              <a class="tab _cell _text" href="https://github.com/hellohq-io/hellohq.docs/issues" target="_blank">Community Forum</a>
+            </nav>
+          </header>
+          <div class="_flx">
+            <div class="_flx-1"></div>
+                      <div class="_text _flx-1">
+                        <p><strong>Hi, nice to see you!</strong></p>
+                        <p>This is the developer guide for the HQ API, which allows developers access to a
+                        wide range of entities and business logic of the HQ.</p>
+                        <h1 id="introduction">Introduction</h1>
+                        <p>The HQ API allows access to your data. To do so, it follows the <a href="http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html">OData 4.0</a>
+                        standard for retrieving, creating, updating and deleting entities through RESTful 
+                        HTTP requests.</p>
+                        <p><strong>Base URL:</strong> <code>https://api.hqlabs.de</code></p>
+                        <p><strong>Before you get started, you need to register your client application in the HQ
+                        admin panel.</strong></p>
+                        <h1 id="authentication">Authentication</h1>
+                        <p>The HQ API uses <a href="https://oauth.net/2/">OAuth 2.0</a> for authentication.</p>
+                        <h2 id="getting-started">Getting Started</h2>
+                        <p>OAuth 2.0 is an authentication framework used for secure user authentication.
+                        With the typical OAuth 2.0 authentication flows, third-party applications do not
+                        receive the user&#39;s password but only a token which is valid for a limited time.</p>
+                        <p>To uniquely identify the client, each client application needs to be registered
+                        first. The client receives an <code>App Id</code> and <code>App Secret</code> which they use to
+                        authenticate against the API.</p>
+                        <p>When a user wants to use the client application, the user should be redirected to our
+                        login page to provide username and password. After a successful login, the client
+                        application receives an <code>Access Token</code> and <code>Refresh Token</code>. These can  be used to
+                        authenticate against the API. From then on, the user is no longer involved in the
+                        authentication process.</p>
+                        <h3 id="client-application">Client Application</h3>
+                        <p>A client application needs to be registered in your HQ. To do so, go to the
+                        administration panel and add a new client application. You will be asked to
+                        provide a unique name, and a display name for your client.</p>
+                        <h3 id="app-id">App Id</h3>
+                        <p>The <code>App Id</code> used for OAuth 2.0 consists of your HQ customer id as well as the id of the
+                        client application you created in the HQ: <code>{customer-id}-{client-id}</code>. For
+                        example, <code>12345-clientapp</code>, where <code>12345</code> is your customer id and <code>clientapp</code> is the
+                        id of the client. After you registered a client application in your HQ, you can
+                        find the <code>App Id</code> in the list in the administration panel.</p>
+                        <h3 id="app-secret">App Secret</h3>
+                        <p>The <code>App Secret</code> is generated in the administration section of your HQ. It is located
+                        next to the <code>App Id</code> in the administration panel list. The secret will be used to
+                        authenticate your client application when requesting a token.</p>
+                        <h3 id="scopes">Scopes</h3>
+                        <p>The OAuth 2.0 authentication flow uses scopes to define which rights are granted to the
+                        application by the user. The HQ API currently supports the following scopes:</p>
+                        <ul>
+                        <li><code>read_all</code>: read access to all resources</li>
+                        <li><code>write_all</code>: write access to all resources</li>
+                        </ul>
+                        <h3 id="access-token">Access Token</h3>
+                        <p>The <code>Access Token</code> is used to authenticate against the API resources. It needs to
+                        be included in every request to the API. Each user must use their own unique <code>Access Token</code>,
+                        since such tokens are only valid for the associated user. The toke is usually valid for a few
+                        days only.</p>
+                        <h3 id="refresh-token">Refresh Token</h3>
+                        <p>The <code>Refresh Token</code> is used to get a new <code>Access Token</code>, once it has expired. A
+                        <code>Refresh Token</code> only expires when the user manually revokes access for the client
+                        application.</p>
+                        <h3 id="oauth-endpoints">OAuth Endpoints</h3>
+                        <p>The OAuth endpoints are required to get an <code>Access Token</code> and exchange a <code>Refresh
+                        Token</code> for a new <code>Access Token</code>:</p>
+                        <ul>
+                        <li><code>/Account/Authorize</code> may be used to initially retrieve an authorization code</li>
+                        <li><code>/Token</code> may be used to retrieve an authorization code for an <code>Access Token</code>
+                        or to get a new <code>Access Token</code> in combination with the <code>Refresh Token</code></li>
+                        </ul>
+                        <h3 id="authorization-flow">Authorization Flow</h3>
+                        <p>The OAuth 2.0 Authorization <code>Code Grant</code> is the default authorization flow and
+                        mainly used by client applications. It is described here in detail:</p>
+                        <h4 id="authorization-request">Authorization Request</h4>
+                        <p>The client constructs the request URI by adding the following parameters to the
+                        query string of the authorization endpoint URI using the
+                        <code>application/x-www-form-urlencoded</code> format. Then, the client directs the user to
+                        the constructed URI using a browser window. The user is asked to log in,
+                        provides their username and password, and grants the requested permissions to your client
+                        application.</p>
+                        <p><strong>Parameter:</strong></p>
+                        <ul>
+                        <li><code>ClientId</code>: the client id of the authentication client</li>
+                        <li><code>State</code>: an arbitrary state string</li>
+                        <li><code>RedirectUri</code>: the URI to redirect the browser to after the user granted the
+                        access</li>
+                        <li><code>Scope</code>: a space-separated list of API scopes</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre><code>GET https:<span class="hljs-comment">//api.hqlabs.de/Account/Authorize</span>
+                                ?response_type=code
+                                <span class="hljs-variable">&amp;client_id</span>=<span class="hljs-number">1234</span>-testapp
+                                <span class="hljs-variable">&amp;state</span>=xyz
+                                <span class="hljs-variable">&amp;redirect_uri</span>=https:<span class="hljs-comment">//client.example.com/cb</span>
+                                <span class="hljs-variable">&amp;scope</span>=read_all write_all
+                        </code></pre><p><strong>Note:</strong> the generated URL needs to be opened in a browser window so that the
+                        user can log in and authorize the application.</p>
+                        <p>All query parameters (especially the <code>RedirectUri</code>) should be properly URL-encoded.</p>
+                        <p>If the user is already granted the same scopes to the client application, the
+                        UI will not be rendered and the redirect with the authorization code happens
+                        automatically.</p>
+                        <h4 id="user-authentication">User Authentication</h4>
+                        <p>The user logs in, and grants or revokes the access request.</p>
+                        <h4 id="authorization-response">Authorization Response</h4>
+                        <p>If the user grants the access request, the authorization server issues an
+                        authorization code and delivers it to the client by adding the following
+                        parameters to the query string of the redirection URI using the
+                        <code>application/x-www-form-urlencoded</code> format.</p>
+                        <p><strong>Parameter:</strong></p>
+                        <ul>
+                        <li><code>RedirectUri</code>: the previously specified redirect URI</li>
+                        <li><code>AuthenticationCode</code>: the authentication code that can be exchanged for a token</li>
+                        <li><code>State</code>: an arbitrary state string</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <p><code>302 Found</code></p>
+                        <pre><code>https://client.example.com/cb?code=MWG5HTnFn9n8HJ&amp;<span class="hljs-keyword">state</span>=xyz
+                        </code></pre><h4 id="access-token-request">Access Token Request</h4>
+                        <p>The client makes a request to the token endpoint by sending the following
+                        parameters in the request body using the <code>application/x-www-form-urlencoded</code> format.</p>
+                        <p><strong>Parameter:</strong></p>
+                        <ul>
+                        <li><code>AuthenticationCode</code>: the code that was sent in the previous response</li>
+                        <li><code>RedirectUri</code>: the previously specified redirect URI</li>
+                        <li><code>Authorization</code>: the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">HTTP Authorization header</a></li>
+                        </ul>
+                        <p><strong>Note:</strong> To construct a proper HTTP Authorization header for <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Access Authentication</a>, you need
+                        to encode your <code>App Id</code> and <code>App Secret</code> using <a href="https://en.wikipedia.org/wiki/Base64">Base64</a>, and add it
+                        to the <code>Authorization</code> header as follows: <code>Authorization: Basic
+                        Base64({AppId}:{AppSecret})</code></p>
+                        <p><strong>Example:</strong></p>
+                        <p><code>POST https://api.hqlabs.de/Token</code></p>
+                        <pre><code>redirect_uri=https:<span class="hljs-comment">//client.example.com/cb</span>
+                          <span class="hljs-variable">&amp;grant_type</span>=authorization_code
+                          <span class="hljs-variable">&amp;code</span>=MWG5HTnFn9n8HJ
+                        </code></pre><p><strong>Note:</strong> All query parameters (especially the <code>RedirectUri</code>) should be properly URL-encoded.</p>
+                        <h4 id="access-token-response">Access Token Response</h4>
+                        <p>If the access token request is valid and authorized, the authorization server
+                        issues an Access Token and Refresh Token. If the request failed or is invalid,
+                        the authorization server returns an error response.</p>
+                        <p><strong>Parameter:</strong></p>
+                        <ul>
+                        <li><code>AuthenticationCode</code>: the code that was sent in the previous response</li>
+                        <li><code>RedirectUri</code>: the previously specified redirect uri</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <pre><code class="lang-json">{
+                           <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"FGDoJBgK96Z..."</span>,  <span class="hljs-comment">// the Access Token for authorization</span>
+                           <span class="hljs-string">"token_type"</span>: <span class="hljs-string">"bearer"</span>,            <span class="hljs-comment">// the token type, usually bearer</span>
+                           <span class="hljs-string">"expires_in"</span>: <span class="hljs-number">1199</span>,                <span class="hljs-comment">// the expiration timespan, in seconds</span>
+                           <span class="hljs-string">"refresh_token"</span>: <span class="hljs-string">"K8vma4VohMb..."</span>, <span class="hljs-comment">// the Refresh Token to request a new Access Token</span>
+                           <span class="hljs-string">"user_id"</span>: <span class="hljs-number">12</span>,                     <span class="hljs-comment">// the Id of the user these tokens are valid for</span>
+                           <span class="hljs-string">"user_name"</span>: <span class="hljs-string">"test.user"</span>           <span class="hljs-comment">// the username of the user these tokens are valid for</span>
+                        }
+                        </code></pre>
+                        <p>After receiving the Access Token, you can use it to request resources from the
+                        API.</p>
+                        <h4 id="resource-request">Resource Request</h4>
+                        <p>To retrieve resources from the API, add the Access Token to the Authorization
+                        header in the following form: Bearer {AccessToken}</p>
+                        <p><strong>Example:</strong></p>
+                        <pre><code><span class="hljs-symbol">Authorization</span>: <span class="hljs-keyword">Bearer </span>FGDoJBgK96Z...
+                        </code></pre><p>Access Tokens expire and need to be refreshed with the Refresh Token.</p>
+                        <h4 id="refresh-token-request">Refresh Token Request</h4>
+                        <p>Every Access Token expires after a time, usually after 30 days. You can use the
+                        Refresh Token to retrieve a new Access Token. The Refresh Token only expires
+                        when the user revokes the token.</p>
+                        <p><strong>Parameter:</strong></p>
+                        <ul>
+                        <li><code>GrantType</code>: the grant type needs to be set to refresh_token</li>
+                        <li><code>RefreshToken</code>: the previously received Refresh Token</li>
+                        <li><code>Authorization</code>: This request requires the HTTP Basic Authentication header.
+                        You need to encode your {appId}:{appSecret} using the Base64 method and add it
+                        to the Authorization header, like this: Authorization: Basic
+                        Base64({AppId}:{AppSecret})</li>
+                        </ul>
+                        <p><strong>Example:</strong></p>
+                        <p><code>POST https://api.hqlabs.de/Token</code></p>
+                        <pre><code><span class="hljs-attr">grant_type</span>=refresh_token&amp;refresh_token=K8vma4VohMb...
+                        </code></pre><p><strong>Example:</strong></p>
+                        <pre><code class="lang-json">{
+                           <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"ADFoJBgK96c..."</span>,  <span class="hljs-comment">// the new Access Token for authorization</span>
+                           <span class="hljs-string">"token_type"</span>: <span class="hljs-string">"bearer"</span>,            <span class="hljs-comment">// the token type, usually bearer</span>
+                           <span class="hljs-string">"expires_in"</span>: <span class="hljs-number">1199</span>,                <span class="hljs-comment">// the expiration timespan, in seconds</span>
+                           <span class="hljs-string">"refresh_token"</span>: <span class="hljs-string">"Gtv6a4VohaB..."</span>, <span class="hljs-comment">// the new Refresh Token to request a new Access Token</span>
+                           <span class="hljs-string">"user_id"</span>: <span class="hljs-number">12</span>,                     <span class="hljs-comment">// the Id of the user these tokens are valid for</span>
+                           <span class="hljs-string">"user_name"</span>: <span class="hljs-string">"test.user"</span>           <span class="hljs-comment">// the username of the user these tokens are valid for</span>
+                        }
+                        </code></pre>
+                        <p>For further questions, please contact us at
+                        <a href="support@helloHQ.io">support@helloHQ.io</a>.</p>
+                        <h1 id="expand">Expand</h1>
+                        <p>Expands can be used to retrieve more data in one query. They allow to get
+                        related entities and navigation properties from an entity.</p>
+                        <p>In the URL, add the following to the <code>$expand=</code> parameter.</p>
+                        <p>Here, some examples for using the <code>expand</code> option are shown.</p>
+                        <h2 id="expand-one-property">Expand one property</h2>
+                        <ul>
+                        <li>On a company, expand the default address of the company: </li>
+                        </ul>
+                        <pre><code><span class="hljs-regexp">/v1/</span>Companies?<span class="hljs-variable">$expand</span>=DefaultAddress
+                        </code></pre><h2 id="expand-multiple-properties">Expand multiple properties</h2>
+                        <ul>
+                        <li>On a company, expand the default address and the company types of the company:</li>
+                        </ul>
+                        <pre><code><span class="hljs-regexp">/v1/</span>Companies?<span class="hljs-variable">$expand</span>=DefaultAddress,CompanyTypes
+                        </code></pre><h2 id="expand-multiple-levels">Expand multiple levels</h2>
+                        <ul>
+                        <li>On an invoice, expand the positions and the custom fields of the positions: </li>
+                        </ul>
+                        <pre><code><span class="hljs-regexp">/v1/</span>Invoices?<span class="hljs-variable">$expand</span>=Positions(<span class="hljs-variable">$expand</span>=CustomFields)
+                        </code></pre><ul>
+                        <li><p>This will not work on paths with mixed cardinality, meaning that <code>Projects -&gt; Positions -&gt; CustomFields</code> works while <code>Projects -&gt; Company -&gt; CustomFields</code> will fail. In those cases, the best solution is to fetch projects as well as companies with their custom fields, and merge the results on the client.</p>
+                        </li>
+                        <li><p>Be aware that multiple expanded levels can create long-running queries as well as large result sets.</p>
+                        </li>
+                        </ul>
+                        <h1 id="filter">Filter</h1>
+                        <p>Filter are useful to construct queries against our API. This way, you don&#39;t need
+                        to retrieve all data and filter on the client.</p>
+                        <p>In the URL, add the following to the <code>$filter=</code> parameter.</p>
+                        <p>If you want to filter on a sub-entity, make sure to expand the entity first.</p>
+                        <p>Here, some examples for using the <code>filter</code> option are shown.</p>
+                        <h2 id="filter-by-date-and-time">Filter by date and time</h2>
+                        <ul>
+                        <li>Get all entities updated since January 26th 2018: </li>
+                        </ul>
+                        <pre><code>/v1/Companies?$filter=UpdatedOn ge <span class="hljs-number">2018</span><span class="hljs-number">-01</span><span class="hljs-number">-26</span>
+                        </code></pre><ul>
+                        <li>Get all entities updated since January 26th 2018, 6:15pm: </li>
+                        </ul>
+                        <pre><code>/v1/Companies?$filter=UpdatedOn gt 2018<span class="hljs-string">-01</span><span class="hljs-string">-26</span>T18:15:00<span class="hljs-string">+01</span>:00
+                        </code></pre><ul>
+                        <li>Get all invoices within one month: </li>
+                        </ul>
+                        <pre><code>/v1/Invoices?$filter=InvoiceDate ge <span class="hljs-number">2018</span><span class="hljs-number">-03</span><span class="hljs-number">-01</span> and InvoiceDate lt <span class="hljs-number">2018</span><span class="hljs-number">-04</span><span class="hljs-number">-01</span>
+                        </code></pre><h2 id="filter-by-companytype">Filter by CompanyType</h2>
+                        <ul>
+                        <li>Find all companies of a specific type, where 4002 is the Id of the CompanyType
+                        &#39;Customer&#39;: </li>
+                        </ul>
+                        <pre><code><span class="hljs-regexp">/v1/</span>Companies?<span class="hljs-variable">$expand</span>=CompanyTypes&amp;<span class="hljs-variable">$filter</span>=CompanyTypes<span class="hljs-regexp">/any(companyType: companyType/</span>Id eq <span class="hljs-number">4002</span>)
+                        </code></pre><ul>
+                        <li>Find all companies of a specific type, where &#39;Lieferant&#39; is the name of the
+                        CompanyType: </li>
+                        </ul>
+                        <pre><code><span class="hljs-regexp">/v1/</span>Companies?<span class="hljs-variable">$expand</span>=CompanyTypes&amp;<span class="hljs-variable">$filter</span>=CompanyTypes<span class="hljs-regexp">/any(companyType: companyType/</span>Name eq <span class="hljs-string">'Lieferant'</span>)
+                        </code></pre><h1 id="http-conventions">HTTP Conventions</h1>
+                        <h2 id="response-types">Response Types</h2>
+                        <p>Generally, all API responses, as well as the POST and PUT bodies, are in JSON
+                        and follow the OData 4 definition.</p>
+                        <p>The OData response wraps the actual data in the data field and adds additional
+                        metadata.</p>
+                        <p>However, there are some cases where the API provides access to binary data, like
+                        PDFs and images.</p>
+                        <p>Every document, for example invoices and quotations, can be retrieved as a
+                        generated PDF file. The PDF is generated on the fly when the document is in a
+                        draft state. After the document was sent, the PDF is archived and the archived
+                        PDF is returned in the API. </p>
+                        <p>You can access the metadata of the document file like this: 
+                        <code>/v1/Invoices(id)/DocumentFile</code></p>
+                        <p>You can access the binary stream (PDF) of the document file like this: 
+                        <code>/v1/Invoices(id)/DocumentFile/$value</code></p>
+                        <p>For further questions, please contact us at support@helloHQ.io.</p>
+                        <h2 id="http-codes">HTTP Codes</h2>
+                        <p>Each response to an API request indicates the success with its status code.</p>
+                        <h3 id="success-status-codes">Success Status Codes</h3>
+                        <pre><code>
+                        <span class="hljs-selector-tag">GET</span>           <span class="hljs-selector-tag">200</span> (OK)     
+                        <span class="hljs-selector-tag">POST</span>          <span class="hljs-selector-tag">201</span> (Created)     
+                        <span class="hljs-selector-tag">PUT</span>           <span class="hljs-selector-tag">200</span> (OK)     
+                        <span class="hljs-selector-tag">DELETE</span>        <span class="hljs-selector-tag">240</span> (No content)     
+                        <span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">200</span> (OK)            <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">base</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">changed</span>
+                        <span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">201</span> (Created)       <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">created</span>
+                        </code></pre><p>The body of the reponse with status code 200 and 201 contain the changed/created
+                        object. Responses with code 204 always return an empty body.</p>
+                        <h3 id="failure-status-codes">Failure Status Codes</h3>
+                        <pre><code>
+                        GET / PUT / <span class="hljs-keyword">DELETE</span> / do.Action()   <span class="hljs-number">404</span> (<span class="hljs-keyword">Not</span> <span class="hljs-keyword">Found</span>)     <span class="hljs-keyword">No</span> <span class="hljs-keyword">object</span> <span class="hljs-keyword">found</span> / Invalid <span class="hljs-keyword">Id</span>
+                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request <span class="hljs-keyword">body</span>
+                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request argument
+                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Validation</span> <span class="hljs-keyword">failed</span>
+                        </code></pre><h2 id="dates-and-times">Dates and Times</h2>
+                        <p>The date and time information is generally in UTC. The client is responsible for
+                        converting the date and time information to user time. The user object contains
+                        the selected timezone of the user. Date and time properties in UTC end on ...On,
+                        for example StartOn or CreatedOn.</p>
+                        <p>There are, however, a few exceptions, where only the date is relevant. In these
+                        cases, the date information is represented without a timezone and should not be
+                        converted. Date properties end on ...Date, for example StartDate or ShownDate.</p>
+                        <h2 id="actions">Actions</h2>
+                        <p>Actions are POST operations performed on specific API objects. Sometimes actions
+                        need specific parameters for the performed operation but this is not necessary
+                        every one of them. An action is mostly a more complex operations handled on the
+                        server which usually perform different data manipulations and object creations.
+                        Remember that an action should not be invoked too frequently on the same object
+                        because of the data manipulation. One call is sufficient to get the certain
+                        outcome.</p>
+                        <p>When new objects are created during an action, in most cases the newly generated
+                        action is beeing returned. The return value can be seen in the action
+                        description iteself.</p>
+                        <h1 id="further-references">Further References</h1>
+                        <p>Please refer to the following pages and guides to learn how to use our API.</p>
+                        <ul>
+                        <li><strong>OData</strong>: <a href="http://www.odata.org/">http://www.odata.org/</a></li>
+                        <li><strong>OAuth 2.0</strong>: <a href="http://oauth.net/2/">http://oauth.net/2/</a></li>
+                        <li><strong>HQ Help</strong>: <a href="http://help.hellohq.io">http://help.hellohq.io</a></li>
+                        </ul>
+                        <h1 id="docs">HQ API Entities</h1>
+                      </div>
+            <div class="_flx-1"></div>
+          </div>
         <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
         <script>
+
             window.onload = function () {
                 // Begin Swagger UI call region
                 const ui = SwaggerUIBundle({
@@ -23,6 +342,16 @@
                     ],
                 })
                 window.ui = ui
+            }
+
+            go_to_docs = function () {
+                var docsElement = document.getElementById("docs");
+
+                docsElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest"
+                });
             }
         </script>
     </body>
