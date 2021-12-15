@@ -330,9 +330,9 @@
             window.onload = function () {
                 // Begin Swagger UI call region
                 const ui = SwaggerUIBundle({
-                    configUrl: "swagger-config.yaml",
                     url: "swagger.json", //Location of Open API spec in the repo
                     dom_id: '#swagger-ui',
+                    defaultModelsExpandDepth: -1,
                     deepLinking: true,
                     presets: [
                         SwaggerUIBundle.presets.apis,
