@@ -37,7 +37,7 @@ h4 {
 
 ._cell {
   display: inline-block;
-  padding: 0 12px;
+  padding: 15px 12px;
 }
 
 ._text {
@@ -78,7 +78,6 @@ h4 {
 
 .tab,
 .tab:link,
-.tab:active,
 .tab:visited {
   text-decoration: none;
   margin-bottom: 7px;
@@ -86,7 +85,8 @@ h4 {
 }
 
 .tab:hover{
-  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 0 11px rgb(33 33 33 / 20%)
 }
 
 /* fixed purpose modifiers */
@@ -113,4 +113,12 @@ h4 {
   font-weight: 400;
   color: #ff4155;
   text-decoration: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }

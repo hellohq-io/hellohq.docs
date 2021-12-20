@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles.css">
         <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
         <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"></link>
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css"/>
     </head>
     <body>
@@ -13,10 +14,12 @@
               <img class="_cell logo" src="img/developer-logo.svg" border="0">
             </a>
             <nav class="nav _cell">
-              <a class="tab _cell _text" onclick="go_to_docs()">REST API Documentation</a>
+              <a class="tab _cell _text" onclick="openTabContent(event, 'guide')" id="defaultOpen">Developer Guide</a>
+              <a class="tab _cell _text" onclick="openTabContent(event, 'docs')">REST API Documentation</a>
               <a class="tab _cell _text" href="https://github.com/hellohq-io/hellohq.docs/issues" target="_blank">Community Forum</a>
             </nav>
           </header>
+          <div id="guide"  class="tabcontent">
           <div class="_flx">
             <div class="_flx-1"></div>
                       <div class="_text _flx-1">
@@ -323,9 +326,14 @@
                       </div>
             <div class="_flx-1"></div>
           </div>
-        <div id="docs"></div>
-        <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
+
+          </div>
+        <div id="docs" class="tabcontent">
+          <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
+        </div>
         <script>
+
+            document.getElementById("defaultOpen").click();
 
             window.onload = function () {
                 // Begin Swagger UI call region
@@ -345,14 +353,25 @@
                 window.ui = ui
             }
 
-            go_to_docs = function () {
-                var docsElement = document.getElementById("docs");
+            function openTabContent(evt, contentName) {
+              // Declare all variables
+              var i, tabcontent, tablinks;
 
-                docsElement.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-                inline: "nearest"
-                });
+              // Get all elements with class="tabcontent" and hide them
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+
+              // Get all elements with class="tablinks" and remove the class "active"
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+
+              // Show the current tab, and add an "active" class to the button that opened the tab
+              document.getElementById(contentName).style.display = "block";
+              evt.currentTarget.className += " active";
             }
         </script>
     </body>
