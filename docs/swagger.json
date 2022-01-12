@@ -769,33 +769,7 @@
         }
       }
     },
-    "/v1/AworkIntegration": {
-      "post": {
-        "tags": [
-          "Awork Integration - Awork Integration"
-        ],
-        "summary": "Create/Update/Delete entities from awork",
-        "parameters": [
-          {
-            "name": "aworkWebhook",
-            "in": "body",
-            "description": "The entity to post",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/AworkWebhook"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Object"
-            }
-          }
-        }
-      }
-    },
+    "/v1/AworkIntegration": {},
     "/v1/Companies": {
       "get": {
         "tags": [
@@ -838,8 +812,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2021-12-17T08:23:50.1764842Z",
-                      "UpdatedOn": "2021-12-17T08:23:50.1764842Z"
+                      "CreatedOn": "2022-01-12T08:37:38.0794232Z",
+                      "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
                     }
                   ],
                   "Files": null,
@@ -847,8 +821,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.1764842Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.1764842Z"
+                  "CreatedOn": "2022-01-12T08:37:38.0794232Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
                 },
                 {
                   "Name": "Company B",
@@ -873,8 +847,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2021-12-17T08:23:50.1764842Z",
-                      "UpdatedOn": "2021-12-17T08:23:50.1764842Z"
+                      "CreatedOn": "2022-01-12T08:37:38.0794232Z",
+                      "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
                     }
                   ],
                   "Files": null,
@@ -882,8 +856,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.1764842Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.1764842Z"
+                  "CreatedOn": "2022-01-12T08:37:38.0794232Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
                 }
               ]
             }
@@ -1498,31 +1472,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Companies - Company Types"
-        ],
-        "summary": "Creates a new company type",
-        "parameters": [
-          {
-            "name": "CompanyType",
-            "in": "body",
-            "description": "The entity to post",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CompanyType"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/Object"
-            }
-          }
-        }
       }
     },
     "/v1/CompanyTypes({Id})": {
@@ -1539,39 +1488,6 @@
             "required": true,
             "type": "integer",
             "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/CompanyType"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Companies - Company Types"
-        ],
-        "summary": "Updates the specified company type",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "CompanyType",
-            "in": "body",
-            "description": "The entity to put",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CompanyType"
-            }
           }
         ],
         "responses": {
@@ -1615,98 +1531,10 @@
         }
       }
     },
-    "/v1/AzureConfig": {
-      "get": {
-        "tags": [
-          "Config - Azure Config"
-        ],
-        "summary": "Returns the Azure configuration",
-        "description": "The Azure configuration can be used to monitor and manage Azure resources.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/AzureConfig"
-            }
-          }
-        }
-      }
-    },
-    "/v1/AzureConfig({Id})": {
-      "get": {
-        "tags": [
-          "Config - Azure Config"
-        ],
-        "summary": "Returns the Azure configuration",
-        "description": "The Azure configuration can be used to monitor and manage Azure resources.",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/AzureConfig"
-            }
-          }
-        }
-      }
-    },
-    "/v1/ConfigSystemEvents": {
-      "get": {
-        "tags": [
-          "Config - Config System Events"
-        ],
-        "summary": "Returns all config system events",
-        "description": "A system audit log event.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ConfigSystemEvent"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/ConfigSystemEvents({Id})": {
-      "get": {
-        "tags": [
-          "Config - Config System Events"
-        ],
-        "summary": "Returns the config system events",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ConfigSystemEvent"
-            }
-          }
-        }
-      }
-    },
+    "/v1/AzureConfig": {},
+    "/v1/AzureConfig({Id})": {},
+    "/v1/ConfigSystemEvents": {},
+    "/v1/ConfigSystemEvents({Id})": {},
     "/v1/ConfigSystemEvents/do.GetDeleted()": {
       "get": {
         "tags": [
@@ -1727,49 +1555,8 @@
         }
       }
     },
-    "/v1/HangfireStats": {
-      "get": {
-        "tags": [
-          "Config - Hangfire Stats"
-        ],
-        "summary": "Returns the current Hangfire stats",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/HangfireStats"
-            }
-          }
-        }
-      }
-    },
-    "/v1/HangfireStats({Id})": {
-      "get": {
-        "tags": [
-          "Config - Hangfire Stats"
-        ],
-        "summary": "Returns the current Hangfire stats",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/HangfireStats"
-            }
-          }
-        }
-      }
-    },
+    "/v1/HangfireStats": {},
+    "/v1/HangfireStats({Id})": {},
     "/v1/InternalCompanies": {
       "get": {
         "tags": [
@@ -1798,8 +1585,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.4046546Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.4046546Z"
+                  "CreatedOn": "2022-01-12T08:37:38.3187227Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.3187227Z"
                 }
               ]
             }
@@ -1833,147 +1620,12 @@
         }
       }
     },
-    "/v1/LoginConfig": {
-      "get": {
-        "tags": [
-          "Config - Login Config"
-        ],
-        "summary": "Returns all system configurations.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LoginConfig"
-            }
-          }
-        }
-      }
-    },
-    "/v1/LoginConfig('{Hostname}')": {
-      "get": {
-        "tags": [
-          "Config - Login Config"
-        ],
-        "summary": "Returns the system configuration of the specified hostname",
-        "description": "The settings of the system with the specified hostname. This is used for customizing the login screen of the customer's HQ.",
-        "parameters": [
-          {
-            "name": "Hostname",
-            "in": "path",
-            "description": "key: Hostname",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LoginConfig"
-            }
-          }
-        }
-      }
-    },
-    "/v1/MenuItems": {
-      "get": {
-        "tags": [
-          "Config - Menu Items"
-        ],
-        "summary": "Returns the menu items configuration of the specified hos...",
-        "description": "Represents an entry in the menu structure of the system for the current users.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/MenuItem"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/MenuItems({Id})": {
-      "get": {
-        "tags": [
-          "Config - Menu Items"
-        ],
-        "summary": "Returns the menu items configuration of the specified hos...",
-        "description": "Represents an entry in the menu structure of the system for the current users.",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/MenuItem"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/ResponseTimeLogs": {
-      "get": {
-        "tags": [
-          "Config - Response Time Logs"
-        ],
-        "summary": "Returns all config system events",
-        "description": "A response time log represents the time it takes for module to load.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ResponseTimeLog"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/ResponseTimeLogs({Id})": {
-      "get": {
-        "tags": [
-          "Config - Response Time Logs"
-        ],
-        "summary": "Returns the config system events",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ResponseTimeLog"
-            }
-          }
-        }
-      }
-    },
+    "/v1/LoginConfig": {},
+    "/v1/LoginConfig('{Hostname}')": {},
+    "/v1/MenuItems": {},
+    "/v1/MenuItems({Id})": {},
+    "/v1/ResponseTimeLogs": {},
+    "/v1/ResponseTimeLogs({Id})": {},
     "/v1/Subsystem": {
       "get": {
         "tags": [
@@ -2025,48 +1677,8 @@
         }
       }
     },
-    "/v1/SystemUrl": {
-      "get": {
-        "tags": [
-          "Config - System Url"
-        ],
-        "summary": "Returns the system URLs",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/SystemUrl"
-            }
-          }
-        }
-      }
-    },
-    "/v1/SystemUrl('{Hostname}')": {
-      "get": {
-        "tags": [
-          "Config - System Url"
-        ],
-        "summary": "Returns the system URLs",
-        "parameters": [
-          {
-            "name": "Hostname",
-            "in": "path",
-            "description": "key: Hostname",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/SystemUrl"
-            }
-          }
-        }
-      }
-    },
+    "/v1/SystemUrl": {},
+    "/v1/SystemUrl('{Hostname}')": {},
     "/v1/ContactHistories": {
       "get": {
         "tags": [
@@ -2484,6 +2096,8 @@
         }
       }
     },
+    "/v1/Demo": {},
+    "/v1/Demo('{Token}')": {},
     "/v1/DeliveryNotes": {
       "get": {
         "tags": [
@@ -2820,8 +2434,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.6923256Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.6923256Z"
+                  "CreatedOn": "2022-01-12T08:37:38.7332464Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.7332464Z"
                 },
                 {
                   "Name": "7 Days",
@@ -2836,8 +2450,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.6923256Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.6923256Z"
+                  "CreatedOn": "2022-01-12T08:37:38.7332464Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.7332464Z"
                 }
               ]
             }
@@ -2871,53 +2485,8 @@
         }
       }
     },
-    "/v1/DocumentPositions": {
-      "get": {
-        "tags": [
-          "Documents - Document Positions"
-        ],
-        "summary": "Returns all document positions",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DocumentPosition"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/DocumentPositions({Id})": {
-      "get": {
-        "tags": [
-          "Documents - Document Positions"
-        ],
-        "summary": "Returns the documentposition with the specified id",
-        "description": "Returns the documentposition with the specifd id",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/DocumentPosition"
-            }
-          }
-        }
-      }
-    },
+    "/v1/DocumentPositions": {},
+    "/v1/DocumentPositions({Id})": {},
     "/v1/DocumentTemplates": {
       "get": {
         "tags": [
@@ -2946,8 +2515,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.7383276Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.7383276Z"
+                  "CreatedOn": "2022-01-12T08:37:38.7896471Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.7896471Z"
                 },
                 {
                   "Name": "Akonto",
@@ -2958,8 +2527,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2021-12-17T08:23:50.7383276Z",
-                  "UpdatedOn": "2021-12-17T08:23:50.7383276Z"
+                  "CreatedOn": "2022-01-12T08:37:38.7896471Z",
+                  "UpdatedOn": "2022-01-12T08:37:38.7896471Z"
                 }
               ]
             }
@@ -2993,67 +2562,8 @@
         }
       }
     },
-    "/v1/Documents({Id})": {
-      "get": {
-        "tags": [
-          "Documents - Documents"
-        ],
-        "summary": "Returns the document with the specified id",
-        "description": "A generic document, used for internal purposes only.",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "description": "key: Id",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Document"
-            }
-          }
-        }
-      }
-    },
-    "/v1/Documents({Id})/Files": {
-      "post": {
-        "tags": [
-          "Documents - Documents"
-        ],
-        "summary": "Creates a new File meta data for the specified Document",
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "file",
-            "in": "body",
-            "description": "The new file",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/HQFile"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/Object"
-            }
-          }
-        }
-      }
-    },
+    "/v1/Documents({Id})": {},
+    "/v1/Documents({Id})/Files": {},
     "/v1/IncomingInvoices": {
       "get": {
         "tags": [
@@ -5010,6 +4520,8 @@
         }
       }
     },
+    "/v1/HealthCheck": {},
+    "/v1/HealthCheck({Id})": {},
     "/v1/LeadStatuses": {
       "get": {
         "tags": [
@@ -22581,6 +22093,71 @@
         }
       }
     },
+    "DemoModel": {
+      "required": [
+        "Token"
+      ],
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "description": "The id of the demo account",
+          "type": "integer"
+        },
+        "Token": {
+          "description": "The token for the api",
+          "type": "string"
+        },
+        "Subdomain": {
+          "type": "string"
+        },
+        "HQCustomerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Email": {
+          "description": "The Email of the user who registered for demo",
+          "type": "string"
+        },
+        "Firstname": {
+          "description": "The firstname of the demo user",
+          "type": "string"
+        },
+        "Lastname": {
+          "description": "The lastname of the demo user",
+          "type": "string"
+        },
+        "Company": {
+          "description": "the company of the demo user",
+          "type": "string"
+        },
+        "GoogleClientId": {
+          "type": "string"
+        },
+        "GoogleUserId": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "DemoReady": {
+          "type": "boolean"
+        },
+        "DemoCreatedOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "DemoExpired": {
+          "type": "boolean"
+        },
+        "UserName": {
+          "type": "string"
+        }
+      }
+    },
     "ODataResponse[List[DeliveryNote]]": {
       "type": "object",
       "properties": {
@@ -34284,6 +33861,15 @@
               }
             }
           }
+        }
+      }
+    },
+    "HealthCheckModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
