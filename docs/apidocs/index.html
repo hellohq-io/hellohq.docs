@@ -1,1 +1,57 @@
-<h1>Docs are here</h1>
+<html>
+
+<head>
+    <title>HQ Developer Guide</title>
+    <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Load the latest Swagger UI code and style from npm using unpkg.com -->
+    <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800">
+    </link>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet"> -->
+</head>
+
+<body>
+    <header class="header _table">
+        <a class="portal" href="https://developer.hellohq.io">
+            <img class="_cell logo" src="../img/developer-logo.svg" border="0">
+        </a>
+        <nav class="nav _cell">
+            <a class="tab _cell _text" href="/" id="defaultOpen">Developer Guide</a>
+            <a class="tab _cell _text" href="/apidocs">REST API Documentation</a>
+            <a class="tab _cell _text" href="https://github.com/hellohq-io/hellohq.docs/issues"
+                target="_blank">Community
+                Forum</a>
+        </nav>
+    </header>
+    <div id="swagger-ui"></div> <!-- Div to hold the UI component -->
+
+    <div class="_footer">
+        <a href="https://www.hellohq.io/Impressum/" target="_blank">Impressum</a> & <a
+            href="https://www.hellohq.io/Datenschutz/" target="_blank">Datenschutz</a>
+    </div>
+    <script>
+        window.onload = function () {
+
+            // Begin Swagger UI call region
+            const ui = SwaggerUIBundle({
+                url: "swagger.json", //Location of Open API spec in the repo
+                dom_id: '#swagger-ui',
+                defaultModelsExpandDepth: -1,
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIBundle.SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+            })
+            window.ui = ui
+        }
+
+    </script>
+</body>
+
+</html>
