@@ -4,7 +4,7 @@
     "version": "v1",
     "title": "HQ API"
   },
-  "host": "api.hqlabs.de",
+  "host": "api.hellohq.io",
   "schemes": [
     "https"
   ],
@@ -793,6 +793,8 @@
                   "Name": "Company A",
                   "IndustrialSector": null,
                   "Description": "A simple company of type Customer",
+                  "IBAN": null,
+                  "BIC": null,
                   "DebitorNumber": null,
                   "CreditorNumber": null,
                   "TaxId": null,
@@ -812,8 +814,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-01-12T08:37:38.0794232Z",
-                      "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
+                      "CreatedOn": "2022-06-27T19:06:54.8931013Z",
+                      "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
                     }
                   ],
                   "Files": null,
@@ -821,13 +823,15 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.0794232Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
+                  "CreatedOn": "2022-06-27T19:06:54.8931013Z",
+                  "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
                 },
                 {
                   "Name": "Company B",
                   "IndustrialSector": null,
                   "Description": "A simple company of type Supplier",
+                  "IBAN": null,
+                  "BIC": null,
                   "DebitorNumber": null,
                   "CreditorNumber": null,
                   "TaxId": null,
@@ -847,8 +851,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-01-12T08:37:38.0794232Z",
-                      "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
+                      "CreatedOn": "2022-06-27T19:06:54.8931013Z",
+                      "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
                     }
                   ],
                   "Files": null,
@@ -856,8 +860,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.0794232Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.0794232Z"
+                  "CreatedOn": "2022-06-27T19:06:54.8931013Z",
+                  "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
                 }
               ]
             }
@@ -1585,8 +1589,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.3187227Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.3187227Z"
+                  "CreatedOn": "2022-06-27T19:06:55.1347265Z",
+                  "UpdatedOn": "2022-06-27T19:06:55.1347265Z"
                 }
               ]
             }
@@ -2434,8 +2438,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.7332464Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.7332464Z"
+                  "CreatedOn": "2022-06-27T19:06:55.9407302Z",
+                  "UpdatedOn": "2022-06-27T19:06:55.9407302Z"
                 },
                 {
                   "Name": "7 Days",
@@ -2450,8 +2454,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.7332464Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.7332464Z"
+                  "CreatedOn": "2022-06-27T19:06:55.9407302Z",
+                  "UpdatedOn": "2022-06-27T19:06:55.9407302Z"
                 }
               ]
             }
@@ -2515,8 +2519,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.7896471Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.7896471Z"
+                  "CreatedOn": "2022-06-27T19:06:56.003927Z",
+                  "UpdatedOn": "2022-06-27T19:06:56.003927Z"
                 },
                 {
                   "Name": "Akonto",
@@ -2527,8 +2531,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-01-12T08:37:38.7896471Z",
-                  "UpdatedOn": "2022-01-12T08:37:38.7896471Z"
+                  "CreatedOn": "2022-06-27T19:06:56.003927Z",
+                  "UpdatedOn": "2022-06-27T19:06:56.003927Z"
                 }
               ]
             }
@@ -5716,6 +5720,50 @@
         }
       }
     },
+    "/v1/Projects({Id})/do.ChangeStatus": {
+      "post": {
+        "tags": [
+          "Projects - Projects"
+        ],
+        "summary": "Change status for the given project",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "description": "key: Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ProjectV1ChangesStatusParameters",
+            "in": "body",
+            "description": "Required parameters are ProjectStatusId.",
+            "required": true,
+            "schema": {
+              "required": [
+                "ProjectStatusId"
+              ],
+              "type": "object",
+              "properties": {
+                "ProjectStatusId": {
+                  "format": "int32",
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Changed",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        }
+      }
+    },
     "/v1/Projects({Id})/do.CreateReporting": {
       "post": {
         "tags": [
@@ -8850,6 +8898,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -9449,6 +9501,10 @@
           "description": "The planned end date of the project",
           "type": "string"
         },
+        "AworkSyncId": {
+          "description": "The Id from the linked awork project",
+          "type": "string"
+        },
         "Subsystems": {
           "description": "The subsystems this project is associated with",
           "type": "array",
@@ -9631,6 +9687,14 @@
             },
             "Description": {
               "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
               "type": "string"
             },
             "DebitorNumber": {
@@ -11340,6 +11404,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -11824,6 +11896,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -12326,6 +12402,14 @@
         },
         "Description": {
           "description": "A longer description of the company",
+          "type": "string"
+        },
+        "IBAN": {
+          "description": "The IBAN of the company",
+          "type": "string"
+        },
+        "BIC": {
+          "description": "The BIC of the company",
           "type": "string"
         },
         "DebitorNumber": {
@@ -13845,6 +13929,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -14493,6 +14585,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -14951,6 +15047,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -15477,6 +15577,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -16086,6 +16190,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -16454,6 +16562,14 @@
             },
             "Description": {
               "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
               "type": "string"
             },
             "DebitorNumber": {
@@ -17059,6 +17175,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -17309,6 +17433,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -18761,6 +18889,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -20461,6 +20593,14 @@
                 "description": "A longer description of the company",
                 "type": "string"
               },
+              "IBAN": {
+                "description": "The IBAN of the company",
+                "type": "string"
+              },
+              "BIC": {
+                "description": "The BIC of the company",
+                "type": "string"
+              },
               "DebitorNumber": {
                 "format": "int32",
                 "description": "The company's debitor number",
@@ -22155,6 +22295,9 @@
         },
         "UserName": {
           "type": "string"
+        },
+        "Users": {
+          "type": "string"
         }
       }
     },
@@ -22969,6 +23112,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -23453,6 +23604,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -25744,6 +25899,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -26228,6 +26391,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -28056,6 +28223,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -28540,6 +28715,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -29328,6 +29507,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -29540,6 +29723,14 @@
             },
             "Description": {
               "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
               "type": "string"
             },
             "DebitorNumber": {
@@ -30404,6 +30595,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -30616,6 +30811,14 @@
             },
             "Description": {
               "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
               "type": "string"
             },
             "DebitorNumber": {
@@ -32859,6 +33062,14 @@
               "description": "A longer description of the company",
               "type": "string"
             },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
             "DebitorNumber": {
               "format": "int32",
               "description": "The company's debitor number",
@@ -33343,6 +33554,10 @@
             "EndDate": {
               "format": "date-time",
               "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
               "type": "string"
             },
             "Subsystems": {
@@ -34222,6 +34437,10 @@
               "description": "The planned end date of the project",
               "type": "string"
             },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
             "Subsystems": {
               "description": "The subsystems this project is associated with",
               "type": "array",
@@ -34447,6 +34666,14 @@
             },
             "Description": {
               "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
               "type": "string"
             },
             "DebitorNumber": {
@@ -35242,6 +35469,10 @@
               "EndDate": {
                 "format": "date-time",
                 "description": "The planned end date of the project",
+                "type": "string"
+              },
+              "AworkSyncId": {
+                "description": "The Id from the linked awork project",
                 "type": "string"
               },
               "Subsystems": {
