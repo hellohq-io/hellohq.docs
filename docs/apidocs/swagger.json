@@ -814,8 +814,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-06-27T19:06:54.8931013Z",
-                      "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
+                      "CreatedOn": "2022-07-31T19:30:20.5160586Z",
+                      "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
                     }
                   ],
                   "Files": null,
@@ -823,8 +823,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:54.8931013Z",
-                  "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
+                  "CreatedOn": "2022-07-31T19:30:20.5160586Z",
+                  "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
                 },
                 {
                   "Name": "Company B",
@@ -851,8 +851,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-06-27T19:06:54.8931013Z",
-                      "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
+                      "CreatedOn": "2022-07-31T19:30:20.5160586Z",
+                      "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
                     }
                   ],
                   "Files": null,
@@ -860,8 +860,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:54.8931013Z",
-                  "UpdatedOn": "2022-06-27T19:06:54.8931013Z"
+                  "CreatedOn": "2022-07-31T19:30:20.5160586Z",
+                  "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
                 }
               ]
             }
@@ -1589,8 +1589,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:55.1347265Z",
-                  "UpdatedOn": "2022-06-27T19:06:55.1347265Z"
+                  "CreatedOn": "2022-07-31T19:30:20.7548236Z",
+                  "UpdatedOn": "2022-07-31T19:30:20.7548236Z"
                 }
               ]
             }
@@ -2102,6 +2102,340 @@
     },
     "/v1/Demo": {},
     "/v1/Demo('{Token}')": {},
+    "/v1/Demo('{Token}')/do.FinishDemo": {},
+    "/v1/Demo('{Token}')/do.PrepareDemo": {},
+    "/v1/CreditNotes": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns all creditNotes",
+        "description": "A creditNote represents an outgoing creditNote you send to your customers.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreditNote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/CreditNotes({Id})": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns the creditNote with the specified id",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "description": "key: Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CreditNote"
+            }
+          }
+        }
+      }
+    },
+    "/v1/CreditNotes({Id})/Positions({PositionId})/CustomFields": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns all custom fields of the creditNote positions",
+        "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomField"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/CreditNotes({Id})/Positions({PositionId})/CustomFields({CustomFieldDefinitionId})": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns the custom field with the specified id of the sel...",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomFieldDefinitionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Updates an existing custom field of the creditNote position",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomFieldDefinitionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomField",
+            "in": "body",
+            "description": "The customfield body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        }
+      }
+    },
+    "/v1/CreditNotes({Id})/Positions": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns all positions on the specified creditNote",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DocumentPosition"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Creates a new position on the specified creditNote",
+        "description": "Creates a new document position. You can find more details about creditNotes in the <a href=\"#!/Documents_-_CreditNotes/CreditNotesV1_Get\">GET operation description</a>.",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "position",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentPosition"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/DocumentPosition"
+            }
+          }
+        }
+      }
+    },
+    "/v1/CreditNotes({Id})/Positions({PositionId})": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns a position on the specified creditNote",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DocumentPosition"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Updates an existing position on the specified creditNote",
+        "description": "Updates the position on the specified creditNote. You can find more details about creditNotes in the <a href=\"#!/Documents_-_CreditNotes/CreditNotesV1_Get\">GET operation description</a>.",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "position",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DocumentPosition"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DocumentPosition"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Deletes a position on the specified creditNote",
+        "description": "Deletes the document position with the specified id.",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          }
+        }
+      }
+    },
     "/v1/DeliveryNotes": {
       "get": {
         "tags": [
@@ -2438,8 +2772,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:55.9407302Z",
-                  "UpdatedOn": "2022-06-27T19:06:55.9407302Z"
+                  "CreatedOn": "2022-07-31T19:30:21.4977651Z",
+                  "UpdatedOn": "2022-07-31T19:30:21.4977651Z"
                 },
                 {
                   "Name": "7 Days",
@@ -2454,8 +2788,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:55.9407302Z",
-                  "UpdatedOn": "2022-06-27T19:06:55.9407302Z"
+                  "CreatedOn": "2022-07-31T19:30:21.4977651Z",
+                  "UpdatedOn": "2022-07-31T19:30:21.4977651Z"
                 }
               ]
             }
@@ -2519,8 +2853,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:56.003927Z",
-                  "UpdatedOn": "2022-06-27T19:06:56.003927Z"
+                  "CreatedOn": "2022-07-31T19:30:21.5632555Z",
+                  "UpdatedOn": "2022-07-31T19:30:21.5632555Z"
                 },
                 {
                   "Name": "Akonto",
@@ -2531,8 +2865,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-06-27T19:06:56.003927Z",
-                  "UpdatedOn": "2022-06-27T19:06:56.003927Z"
+                  "CreatedOn": "2022-07-31T19:30:21.5632555Z",
+                  "UpdatedOn": "2022-07-31T19:30:21.5632555Z"
                 }
               ]
             }
@@ -4526,6 +4860,8 @@
     },
     "/v1/HealthCheck": {},
     "/v1/HealthCheck({Id})": {},
+    "/v1/ExternalIntegrationsCallback": {},
+    "/v1/ExternalIntegrationsCallback('{Id}')": {},
     "/v1/LeadStatuses": {
       "get": {
         "tags": [
@@ -22301,6 +22637,2280 @@
         }
       }
     },
+    "ODataResponse[List[CreditNote]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "description": "An invoice represents an outgoing invoice, cancellation or advance payment invoice you send to your customers.",
+            "required": [
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "InvoiceDate": {
+                "format": "date-time",
+                "description": "The date of this invoice",
+                "type": "string"
+              },
+              "BookingDate": {
+                "format": "date-time",
+                "description": "The date this invoice was booked",
+                "type": "string"
+              },
+              "Positions": {
+                "description": "The positions of this invoice",
+                "type": "array"
+              },
+              "Currency": {
+                "description": "The ISO 4217 code of the currency of this document.",
+                "maxLength": 3,
+                "minLength": 0,
+                "type": "string"
+              },
+              "ExchangeRate": {
+                "format": "double",
+                "description": "The exchange rate to Euro.\r\n            While the document is in a draft state, the exchange rate reflects the current exchange rate of ECB.\r\n            After the document has been sent, the exchange rate at that date will be returned.",
+                "type": "number"
+              },
+              "DeliveryDate": {
+                "format": "date-time",
+                "description": "The date of the delivery of the products or services.",
+                "type": "string"
+              },
+              "PaymentConditionId": {
+                "format": "int32",
+                "description": "The Id of the payment condition.",
+                "type": "integer"
+              },
+              "DeliveryConditionId": {
+                "format": "int32",
+                "description": "The Id of the delivery condition.",
+                "type": "integer"
+              },
+              "PaymentCondition": {
+                "description": "The payment condition that applies to this document",
+                "type": "object"
+              },
+              "DeliveryCondition": {
+                "description": "The delivery condition that applies to this document",
+                "type": "object"
+              },
+              "DiscountType": {
+                "description": "Whether the document discount is specified as a total or a percentage.",
+                "type": "string"
+              },
+              "Discount": {
+                "format": "double",
+                "description": "A discount that should be applied to the total sum.\r\n            This is either a total or a percantage value, depending on the DiscountType.",
+                "type": "number"
+              },
+              "Margin": {
+                "format": "double",
+                "description": "A margin (as a percentage) that should be applied to the total sum.\r\n            This margin will be equally distributed over all positions.",
+                "type": "number"
+              },
+              "TaxOption": {
+                "description": "The tax rule that should apply to this document.\r\n            VAT is most commonly used for documents within the same country.",
+                "type": "string"
+              },
+              "ServiceOption": {
+                "description": "Whether the positions in this document are a delivery or any other kind of service.",
+                "type": "string"
+              },
+              "NetTotal": {
+                "format": "decimal",
+                "description": "The net sum of the document. This is calculated considering all positions, position and document margin as well as position and document discount.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+                "type": "number"
+              },
+              "GrossTotal": {
+                "format": "decimal",
+                "description": "The gross sum of the document. This is calculated considering all positions, position taxes, position and document margin as well as position and document discount.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+                "type": "number"
+              },
+              "VatTotal": {
+                "format": "decimal",
+                "description": "The sum of the position VAT.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+                "type": "number"
+              },
+              "PaidTotal": {
+                "format": "decimal",
+                "description": "The sum of received payments for this document.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+                "type": "number"
+              },
+              "Type": {
+                "description": "The type of the document",
+                "type": "string"
+              },
+              "AddressText": {
+                "description": "The receiver address text of the document",
+                "type": "string"
+              },
+              "CompanyAddressId": {
+                "format": "int32",
+                "description": "The id of the postal address of the receiving company",
+                "type": "integer"
+              },
+              "CompanyAddress": {
+                "description": "The postal address of the receiving company",
+                "type": "object"
+              },
+              "Subject": {
+                "description": "The subject of the document including the placeholders",
+                "type": "string"
+              },
+              "CalculatedSubject": {
+                "description": "The calcuated subject of the document.\r\n            The subject includes the final data, without the placeholders.",
+                "type": "string"
+              },
+              "Header": {
+                "description": "The header text on the document",
+                "type": "string"
+              },
+              "Footer": {
+                "description": "The footer text on the document",
+                "type": "string"
+              },
+              "DocumentTemplateId": {
+                "format": "int32",
+                "description": "The document template id",
+                "type": "integer"
+              },
+              "Number": {
+                "description": "The number of the document, auto generated by the HQ",
+                "type": "string"
+              },
+              "ContactPersonId": {
+                "format": "int32",
+                "description": "The id of the responsible contact person at the receiving company",
+                "type": "integer"
+              },
+              "ContactPerson": {
+                "description": "The responsible contact person at the receiving company",
+                "type": "object"
+              },
+              "CompanyId": {
+                "format": "int32",
+                "description": "The id of the company which is the receiver of the document",
+                "type": "integer"
+              },
+              "Company": {
+                "description": "The company which is the receiver of the document",
+                "type": "object"
+              },
+              "InternalContactPersonId": {
+                "format": "int32",
+                "description": "The id of the HQ user responsible for this document",
+                "type": "integer"
+              },
+              "InternalContactPerson": {
+                "description": "The HQ user repsonsible for this document",
+                "type": "object"
+              },
+              "LeadId": {
+                "format": "int32",
+                "description": "The id of the lead related to the document",
+                "type": "integer"
+              },
+              "Lead": {
+                "description": "The lead related to the document",
+                "type": "object"
+              },
+              "SyncId": {
+                "description": "A unique identifier for other sync clients",
+                "type": "string"
+              },
+              "ProjectId": {
+                "format": "int32",
+                "description": "the id of the project related to the document",
+                "type": "integer"
+              },
+              "Project": {
+                "description": "The project related to the document",
+                "type": "object"
+              },
+              "Note": {
+                "description": "The comment on the document",
+                "type": "string"
+              },
+              "CompanyPurchaseOrderNumber": {
+                "description": "The purchase order number on the document",
+                "type": "string"
+              },
+              "Language": {
+                "description": "The language of the document as two-letter ISOCode, for example 'DE'",
+                "type": "string"
+              },
+              "DocumentFile": {
+                "description": "The generated pdf file",
+                "type": "object"
+              },
+              "DocumentImage": {
+                "description": "The generated pdf file, as an image",
+                "type": "object"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "CreditNote": {
+      "description": "An invoice represents an outgoing invoice, cancellation or advance payment invoice you send to your customers.",
+      "required": [
+        "Id"
+      ],
+      "type": "object",
+      "properties": {
+        "InvoiceDate": {
+          "format": "date-time",
+          "description": "The date of this invoice",
+          "type": "string"
+        },
+        "BookingDate": {
+          "format": "date-time",
+          "description": "The date this invoice was booked",
+          "type": "string"
+        },
+        "Positions": {
+          "description": "The positions of this invoice",
+          "type": "array",
+          "items": {
+            "description": "A document position represents a position on a quotation or invoice.",
+            "required": [
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "IsOptional": {
+                "description": "Whether this position is optional. Only valid in quotations.",
+                "type": "boolean"
+              },
+              "Tax": {
+                "format": "double",
+                "description": "The position tax rate, for example 19%",
+                "type": "number"
+              },
+              "Price": {
+                "format": "decimal",
+                "description": "The position price, in the currency of the document",
+                "type": "number"
+              },
+              "Discount": {
+                "format": "double",
+                "description": "The percentage discount that should be applied to this position sum",
+                "type": "number"
+              },
+              "Margin": {
+                "format": "double",
+                "description": "The margin that should be applied to this position sum",
+                "type": "number"
+              },
+              "ExcludeFromEarlyPayment": {
+                "description": "Whether this position should be excluded from early payment discount calculations",
+                "type": "boolean"
+              },
+              "TotalPrice": {
+                "format": "double",
+                "description": "The total price under consideration of margin and discount",
+                "type": "number"
+              },
+              "TotalUnitPrice": {
+                "format": "double",
+                "description": "The total unit price under consideration of margin and discount",
+                "type": "number"
+              },
+              "TotalVat": {
+                "format": "double",
+                "description": "The total VAT of this position under consideration of margin and discount",
+                "type": "number"
+              },
+              "UserReportings": {
+                "description": "The user reportings which have been billed with this document position",
+                "type": "array"
+              },
+              "Text": {
+                "description": "The position text, as HTML",
+                "type": "string"
+              },
+              "Unit": {
+                "description": "The position unit",
+                "type": "string"
+              },
+              "Type": {
+                "description": "The type of this position",
+                "type": "string"
+              },
+              "Order": {
+                "format": "int32",
+                "description": "The order of this position in the document",
+                "type": "integer"
+              },
+              "ArticleId": {
+                "format": "int32",
+                "description": "The Id of the article that is associated with this position",
+                "type": "integer"
+              },
+              "ProjectId": {
+                "format": "int32",
+                "description": "The Id Of the Project",
+                "type": "integer"
+              },
+              "Article": {
+                "description": "The article that is associated with this position",
+                "type": "object"
+              },
+              "Amount": {
+                "format": "double",
+                "description": "The amount of this position in this document",
+                "type": "number"
+              },
+              "ProjectBudgetId": {
+                "format": "int32",
+                "description": "The Id of the project budget",
+                "type": "integer"
+              },
+              "CostTypeId": {
+                "format": "int32",
+                "description": "The if of the costType",
+                "type": "integer"
+              },
+              "BookingAccount": {
+                "description": "The booking account this position is associated with",
+                "type": "string"
+              },
+              "CostCenter1": {
+                "description": "The cost center 1 this position is associated with",
+                "type": "string"
+              },
+              "CostCenter2": {
+                "description": "The cost center 2 this position is associated with",
+                "type": "string"
+              },
+              "CustomFields": {
+                "description": "The custom fields of this document position",
+                "type": "array"
+              },
+              "DocumentId": {
+                "format": "int32",
+                "description": "The Id of the document the position belongs to",
+                "type": "integer"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Currency": {
+          "description": "The ISO 4217 code of the currency of this document.",
+          "maxLength": 3,
+          "minLength": 0,
+          "type": "string"
+        },
+        "ExchangeRate": {
+          "format": "double",
+          "description": "The exchange rate to Euro.\r\n            While the document is in a draft state, the exchange rate reflects the current exchange rate of ECB.\r\n            After the document has been sent, the exchange rate at that date will be returned.",
+          "type": "number"
+        },
+        "DeliveryDate": {
+          "format": "date-time",
+          "description": "The date of the delivery of the products or services.",
+          "type": "string"
+        },
+        "PaymentConditionId": {
+          "format": "int32",
+          "description": "The Id of the payment condition.",
+          "type": "integer"
+        },
+        "DeliveryConditionId": {
+          "format": "int32",
+          "description": "The Id of the delivery condition.",
+          "type": "integer"
+        },
+        "PaymentCondition": {
+          "description": "The payment condition that applies to this document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of document condition",
+              "type": "string"
+            },
+            "Text": {
+              "description": "The text of condition",
+              "type": "string"
+            },
+            "DisplayText": {
+              "description": "The text with replaced due days",
+              "type": "string"
+            },
+            "DueInDays": {
+              "format": "int32",
+              "description": "The payment due date in days",
+              "type": "integer"
+            },
+            "Type": {
+              "description": "The type of this condition",
+              "enum": [
+                "PaymentConditions",
+                "DeliveryConditions",
+                "NotDefined"
+              ],
+              "type": "string"
+            },
+            "WarningDays": {
+              "format": "int32",
+              "description": "The payment due date in days of a warning document",
+              "type": "integer"
+            },
+            "ReminderDays": {
+              "format": "int32",
+              "description": "The payment due date in days of a reminder document",
+              "type": "integer"
+            },
+            "Language": {
+              "description": "The language of the condition, as two-letter ISO-Code, for example 'DE'",
+              "type": "string"
+            },
+            "DocumentEarlyPayments": {
+              "description": "The list of early payment conditions that belong to this document condition (i.e. Skonto)",
+              "type": "array",
+              "items": {
+                "description": "The document early payment entry represents a rule in days before which a discount is granted on an invoice.",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "DeliveryCondition": {
+          "description": "The delivery condition that applies to this document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of document condition",
+              "type": "string"
+            },
+            "Text": {
+              "description": "The text of condition",
+              "type": "string"
+            },
+            "DisplayText": {
+              "description": "The text with replaced due days",
+              "type": "string"
+            },
+            "DueInDays": {
+              "format": "int32",
+              "description": "The payment due date in days",
+              "type": "integer"
+            },
+            "Type": {
+              "description": "The type of this condition",
+              "enum": [
+                "PaymentConditions",
+                "DeliveryConditions",
+                "NotDefined"
+              ],
+              "type": "string"
+            },
+            "WarningDays": {
+              "format": "int32",
+              "description": "The payment due date in days of a warning document",
+              "type": "integer"
+            },
+            "ReminderDays": {
+              "format": "int32",
+              "description": "The payment due date in days of a reminder document",
+              "type": "integer"
+            },
+            "Language": {
+              "description": "The language of the condition, as two-letter ISO-Code, for example 'DE'",
+              "type": "string"
+            },
+            "DocumentEarlyPayments": {
+              "description": "The list of early payment conditions that belong to this document condition (i.e. Skonto)",
+              "type": "array",
+              "items": {
+                "description": "The document early payment entry represents a rule in days before which a discount is granted on an invoice.",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "DiscountType": {
+          "description": "Whether the document discount is specified as a total or a percentage.",
+          "enum": [
+            "Percent",
+            "NetValue",
+            "NotSet"
+          ],
+          "type": "string"
+        },
+        "Discount": {
+          "format": "double",
+          "description": "A discount that should be applied to the total sum.\r\n            This is either a total or a percantage value, depending on the DiscountType.",
+          "type": "number"
+        },
+        "Margin": {
+          "format": "double",
+          "description": "A margin (as a percentage) that should be applied to the total sum.\r\n            This margin will be equally distributed over all positions.",
+          "type": "number"
+        },
+        "TaxOption": {
+          "description": "The tax rule that should apply to this document.\r\n            VAT is most commonly used for documents within the same country.",
+          "enum": [
+            "VatApplicable",
+            "FreeThirdCountryTerritory",
+            "FreeEuropeanUnionWithVatId",
+            "FreeEuropeanUnionNoVatId",
+            "Inverse",
+            "IntraCommunityDelivery",
+            "ExportDelivery",
+            "FreeOther",
+            "FreeYouthSupport"
+          ],
+          "type": "string"
+        },
+        "ServiceOption": {
+          "description": "Whether the positions in this document are a delivery or any other kind of service.",
+          "enum": [
+            "None",
+            "Delivery",
+            "Service",
+            "DeliveryAndService"
+          ],
+          "type": "string"
+        },
+        "NetTotal": {
+          "format": "decimal",
+          "description": "The net sum of the document. This is calculated considering all positions, position and document margin as well as position and document discount.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+          "type": "number"
+        },
+        "GrossTotal": {
+          "format": "decimal",
+          "description": "The gross sum of the document. This is calculated considering all positions, position taxes, position and document margin as well as position and document discount.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+          "type": "number"
+        },
+        "VatTotal": {
+          "format": "decimal",
+          "description": "The sum of the position VAT.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+          "type": "number"
+        },
+        "PaidTotal": {
+          "format": "decimal",
+          "description": "The sum of received payments for this document.\r\n            The sum is to be interpreted in the document currency.\r\n            Read-only.",
+          "type": "number"
+        },
+        "Type": {
+          "description": "The type of the document",
+          "enum": [
+            "Quotation",
+            "Invoice",
+            "DeliveryNote",
+            "Warning",
+            "Reminder",
+            "Cancellation",
+            "CreditNote",
+            "Confirmation",
+            "IncomingInvoice",
+            "Undefined",
+            "Order",
+            "PriceInquery",
+            "Letter",
+            "Minute",
+            "Akonto"
+          ],
+          "type": "string"
+        },
+        "AddressText": {
+          "description": "The receiver address text of the document",
+          "type": "string"
+        },
+        "CompanyAddressId": {
+          "format": "int32",
+          "description": "The id of the postal address of the receiving company",
+          "type": "integer"
+        },
+        "CompanyAddress": {
+          "description": "The postal address of the receiving company",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "City": {
+              "description": "The city of this address",
+              "type": "string"
+            },
+            "Street": {
+              "description": "The street name of this address",
+              "type": "string"
+            },
+            "HouseNumber": {
+              "description": "The house number of this address",
+              "type": "string"
+            },
+            "ZipCode": {
+              "description": "The ZIP or Postal Code of this address",
+              "type": "string"
+            },
+            "AddressLine2": {
+              "description": "The secondary address line, c/o details, etc.",
+              "type": "string"
+            },
+            "Description": {
+              "description": "The description of this address",
+              "type": "string"
+            },
+            "Country": {
+              "description": "The ISO 3166-1 alpha-2 country code of this address",
+              "type": "string"
+            },
+            "Phone": {
+              "description": "The phone number of this address",
+              "type": "string"
+            },
+            "Fax": {
+              "description": "The fax number of this address",
+              "type": "string"
+            },
+            "Email": {
+              "description": "The email address of this address",
+              "type": "string"
+            },
+            "Website": {
+              "description": "The website of this address",
+              "type": "string"
+            },
+            "IsStandard": {
+              "description": "Whether this address is the standard address of a company",
+              "type": "boolean"
+            },
+            "DefaultForDocumentType": {
+              "description": "The document type this address should be used as a standard for",
+              "enum": [
+                "Quotation",
+                "Invoice",
+                "DeliveryNote",
+                "Warning",
+                "Reminder",
+                "Cancellation",
+                "CreditNote",
+                "Confirmation",
+                "IncomingInvoice",
+                "Undefined",
+                "Order",
+                "PriceInquery",
+                "Letter",
+                "Minute",
+                "Akonto"
+              ],
+              "type": "string"
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "Subject": {
+          "description": "The subject of the document including the placeholders",
+          "type": "string"
+        },
+        "CalculatedSubject": {
+          "description": "The calcuated subject of the document.\r\n            The subject includes the final data, without the placeholders.",
+          "type": "string"
+        },
+        "Header": {
+          "description": "The header text on the document",
+          "type": "string"
+        },
+        "Footer": {
+          "description": "The footer text on the document",
+          "type": "string"
+        },
+        "DocumentTemplateId": {
+          "format": "int32",
+          "description": "The document template id",
+          "type": "integer"
+        },
+        "Number": {
+          "description": "The number of the document, auto generated by the HQ",
+          "type": "string"
+        },
+        "ContactPersonId": {
+          "format": "int32",
+          "description": "The id of the responsible contact person at the receiving company",
+          "type": "integer"
+        },
+        "ContactPerson": {
+          "description": "The responsible contact person at the receiving company",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "FirstName": {
+              "description": "The first name of the contact person",
+              "type": "string"
+            },
+            "LastName": {
+              "description": "The last name of the contact person",
+              "type": "string"
+            },
+            "Position": {
+              "description": "The position of the contact person",
+              "type": "string"
+            },
+            "CompanyId": {
+              "format": "int32",
+              "description": "The Id of the company that the contact person belongs to",
+              "type": "integer"
+            },
+            "PhoneLandline": {
+              "description": "The landline phone number of the contact person",
+              "type": "string"
+            },
+            "PhoneMobile": {
+              "description": "The mobile phone number of the contact person",
+              "type": "string"
+            },
+            "Salutation": {
+              "description": "The salutation of the contact person",
+              "type": "string"
+            },
+            "Birthdate": {
+              "description": "The birth date of the user",
+              "type": "string"
+            },
+            "SalutationForm": {
+              "description": "The salutation form of the contact person. The value can be \"Neutral\", \"Formal\", \"Informal\" or null.",
+              "enum": [
+                "Formal",
+                "Informal",
+                "Neutral",
+                "NotSet"
+              ],
+              "type": "string"
+            },
+            "Title": {
+              "description": "The academic title of the contact person",
+              "type": "string"
+            },
+            "Language": {
+              "description": "The preferred contact language of this contact person, in two-letter ISO-Code, for example 'DE'",
+              "type": "string"
+            },
+            "DefaultAddressId": {
+              "format": "int32",
+              "description": "The id of the default address of this contact person",
+              "type": "integer"
+            },
+            "Addresses": {
+              "description": "All addresses of the contact person",
+              "type": "array",
+              "items": {
+                "description": "A company address represents one of many addresses of companies.",
+                "type": "object"
+              }
+            },
+            "DefaultAddress": {
+              "description": "The default address of this contact person",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "CustomFields": {
+              "description": "The customfields associated with this contact person",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "Company": {
+              "description": "The company that the contact person belongs to",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "CompanyId": {
+          "format": "int32",
+          "description": "The id of the company which is the receiver of the document",
+          "type": "integer"
+        },
+        "Company": {
+          "description": "The company which is the receiver of the document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of the company",
+              "type": "string"
+            },
+            "IndustrialSector": {
+              "description": "The company's industrial sector",
+              "type": "string"
+            },
+            "Description": {
+              "description": "A longer description of the company",
+              "type": "string"
+            },
+            "IBAN": {
+              "description": "The IBAN of the company",
+              "type": "string"
+            },
+            "BIC": {
+              "description": "The BIC of the company",
+              "type": "string"
+            },
+            "DebitorNumber": {
+              "format": "int32",
+              "description": "The company's debitor number",
+              "type": "integer"
+            },
+            "CreditorNumber": {
+              "format": "int32",
+              "description": "The company's creditor number",
+              "type": "integer"
+            },
+            "TaxId": {
+              "description": "The company's tax id",
+              "type": "string"
+            },
+            "DefaultDeliveryConditionId": {
+              "format": "int32",
+              "description": "The id of the default delivery condition of this company",
+              "type": "integer"
+            },
+            "DefaultDeliveryCondition": {
+              "description": "The default delivery condition of this company",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "DefaultPaymentConditionId": {
+              "format": "int32",
+              "description": "The id of the default payment condition of this company",
+              "type": "integer"
+            },
+            "DefaultPaymentCondition": {
+              "description": "The default payment condition of this company",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "DefaultAddress": {
+              "description": "The default address of this company",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Addresses": {
+              "description": "All addresses of the company",
+              "type": "array",
+              "items": {
+                "description": "A company address represents one of many addresses of companies.",
+                "type": "object"
+              }
+            },
+            "ResponsibleUsers": {
+              "description": "The list of the responsible users of this company",
+              "type": "array",
+              "items": {
+                "description": "A user represents a user in your HQ system.",
+                "type": "object"
+              }
+            },
+            "CustomFields": {
+              "description": "The customfields associated with this company",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "CompanyTypes": {
+              "description": "The company types associated with this company",
+              "type": "array",
+              "items": {
+                "description": "This is a connection between a company and a company type.\r\n            A company can have more than one type and can have a different company number for each type.",
+                "type": "object"
+              }
+            },
+            "Files": {
+              "description": "The files associated with this company",
+              "type": "array",
+              "items": {
+                "description": "A file represents a user upload or HQ-generated PDF documents.",
+                "type": "object"
+              }
+            },
+            "Subsystems": {
+              "description": "The subsystems this company is associated with",
+              "type": "array",
+              "items": {
+                "description": "A subsystem represents a tenant within a customer's HQ",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "InternalContactPersonId": {
+          "format": "int32",
+          "description": "The id of the HQ user responsible for this document",
+          "type": "integer"
+        },
+        "InternalContactPerson": {
+          "description": "The HQ user repsonsible for this document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "FirstName": {
+              "description": "The first name of the user",
+              "type": "string"
+            },
+            "LastName": {
+              "description": "The last name of the user",
+              "type": "string"
+            },
+            "UserName": {
+              "description": "The user's user name in HQ",
+              "type": "string"
+            },
+            "EMailWork": {
+              "description": "The work email of the user",
+              "type": "string"
+            },
+            "Salutation": {
+              "description": "The salutation of the user, i.e. Mrs. or Mr.",
+              "type": "string"
+            },
+            "Title": {
+              "description": "The professional title of the user",
+              "type": "string"
+            },
+            "EmployeeNumber": {
+              "description": "The employee number of the user",
+              "type": "string"
+            },
+            "BirthDate": {
+              "format": "date-time",
+              "description": "The birth date of the user",
+              "type": "string"
+            },
+            "FederalState": {
+              "description": "The federal state of the user",
+              "type": "string"
+            },
+            "Country": {
+              "description": "The country of the user",
+              "type": "string"
+            },
+            "BasicLoadInHours": {
+              "format": "double",
+              "description": "The basic load in hours of the user",
+              "type": "number"
+            },
+            "EntryDate": {
+              "format": "date-time",
+              "description": "The entry date of the user",
+              "type": "string"
+            },
+            "LeavingDate": {
+              "format": "date-time",
+              "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "UserWorkingHours": {
+              "description": "The custom fields of the user",
+              "type": "array",
+              "items": {
+                "description": "The weekly working hours user",
+                "type": "object"
+              }
+            },
+            "CustomFields": {
+              "description": "The custom fields of the user",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "UserGroups": {
+              "description": "The user groups of the user",
+              "type": "array",
+              "items": {
+                "description": "The user groups a user is in.",
+                "type": "object"
+              }
+            },
+            "ResourceGroup": {
+              "description": "The resource group of the user",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Absences": {
+              "description": "The absences of the user",
+              "type": "array",
+              "items": {
+                "description": "An absence represents a time of absence from work, for example holidays or sickness. \r\n            Absences can be either paid or unpaid.",
+                "type": "object"
+              }
+            },
+            "Assignments": {
+              "description": "The tasks the user is assigned to",
+              "type": "array",
+              "items": {
+                "description": "The assignment of a user to a task",
+                "type": "object"
+              }
+            },
+            "Reportings": {
+              "description": "The reportings of this user",
+              "type": "array",
+              "items": {
+                "description": "A user reporting represents a logged time of a user on a specific task in HQ.",
+                "type": "object"
+              }
+            },
+            "ProjectMembers": {
+              "description": "The allocations of this user to projects",
+              "type": "array",
+              "items": {
+                "description": "A project member links a user to a project. It includes the project role and the charge rates\r\n            for the link.",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "LeadId": {
+          "format": "int32",
+          "description": "The id of the lead related to the document",
+          "type": "integer"
+        },
+        "Lead": {
+          "description": "The lead related to the document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of the lead",
+              "type": "string"
+            },
+            "CompanyName": {
+              "description": "The name of the company that this lead is assigned to, read-only",
+              "type": "string"
+            },
+            "Number": {
+              "description": "The number of the lead",
+              "type": "string"
+            },
+            "Company": {
+              "description": "The company this lead belongs to",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Status": {
+              "description": "The status of the lead",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "StatusId": {
+              "format": "int32",
+              "description": "The Id of the status of the lead",
+              "type": "integer"
+            },
+            "CashOn": {
+              "format": "date-time",
+              "description": "The expected sales date",
+              "type": "string"
+            },
+            "ClosingProbability": {
+              "format": "int32",
+              "description": "The probability of closing the lead, in percent",
+              "type": "integer"
+            },
+            "Currency": {
+              "description": "The ISO 4217 code of the currency of the lead volume",
+              "maxLength": 3,
+              "minLength": 0,
+              "type": "string"
+            },
+            "Volume": {
+              "format": "double",
+              "description": "The financial volume when closing the lead",
+              "type": "number"
+            },
+            "CompanyId": {
+              "format": "int32",
+              "description": "The Id of the company this lead belongs to",
+              "type": "integer"
+            },
+            "CustomFields": {
+              "description": "The custom fields of this lead",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "ResponsibleUserId": {
+              "format": "int32",
+              "description": "The user id of the HQ user responsible for this lead",
+              "type": "integer"
+            },
+            "ResponsibleUser": {
+              "description": "The HQ user responsible for this lead",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "SalesCampaigns": {
+              "description": "List of all Sales Campaigns for this Lead",
+              "type": "array",
+              "items": {
+                "description": "Represents the status a lead is in",
+                "type": "object"
+              }
+            },
+            "ContactPersons": {
+              "description": "List of all contact persons for this Lead",
+              "type": "array",
+              "items": {
+                "description": "A contact person represents a person that works for a company you do business with. A company can have many contact persons.",
+                "type": "object"
+              }
+            },
+            "Subsystems": {
+              "description": "The subsystems this lead is associated with",
+              "type": "array",
+              "items": {
+                "description": "A subsystem represents a tenant within a customer's HQ",
+                "type": "object"
+              }
+            },
+            "ProjectId": {
+              "format": "int32",
+              "description": "The project id of the lead",
+              "type": "integer"
+            },
+            "Project": {
+              "description": "The project of the lead",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "SyncId": {
+          "description": "A unique identifier for other sync clients",
+          "type": "string"
+        },
+        "ProjectId": {
+          "format": "int32",
+          "description": "the id of the project related to the document",
+          "type": "integer"
+        },
+        "Project": {
+          "description": "The project related to the document",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Number": {
+              "description": "The number of the project",
+              "type": "string"
+            },
+            "Name": {
+              "description": "The name of the project",
+              "type": "string"
+            },
+            "Status": {
+              "description": "The current status description of the project",
+              "type": "string"
+            },
+            "PlannedStartDate": {
+              "format": "date-time",
+              "description": "The planned start date of the first task of the project",
+              "type": "string"
+            },
+            "PlannedEndDate": {
+              "format": "date-time",
+              "description": "The planned end date of the last task of the project",
+              "type": "string"
+            },
+            "StartDate": {
+              "format": "date-time",
+              "description": "The planned start date of the project",
+              "type": "string"
+            },
+            "EndDate": {
+              "format": "date-time",
+              "description": "The planned end date of the project",
+              "type": "string"
+            },
+            "AworkSyncId": {
+              "description": "The Id from the linked awork project",
+              "type": "string"
+            },
+            "Subsystems": {
+              "description": "The subsystems this project is associated with",
+              "type": "array",
+              "items": {
+                "description": "A subsystem represents a tenant within a customer's HQ",
+                "type": "object"
+              }
+            },
+            "ProjectTemplateId": {
+              "format": "int32",
+              "description": "The id of the project template",
+              "type": "integer"
+            },
+            "ProjectTemplate": {
+              "description": "The template of this project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "ProjectStatusId": {
+              "format": "int32",
+              "description": "The id of the project status",
+              "type": "integer"
+            },
+            "CompanyId": {
+              "format": "int32",
+              "description": "The id of the company",
+              "type": "integer"
+            },
+            "LeadId": {
+              "format": "int32",
+              "description": "The Id of the lead",
+              "type": "integer"
+            },
+            "InvoiceAddressId": {
+              "format": "int32",
+              "description": "Id of the address for invoices of this project",
+              "type": "integer"
+            },
+            "DeliveryAddressId": {
+              "format": "int32",
+              "description": "Id of the address for the deliveries of this project",
+              "type": "integer"
+            },
+            "ResponsibleUserId": {
+              "format": "int32",
+              "description": "The id of the user which is responsible for this (internal) project",
+              "type": "integer"
+            },
+            "ProjectStatus": {
+              "description": "The status of the project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Company": {
+              "description": "The company this project is associated with",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "ResponsibleUser": {
+              "description": "The user which is responsible for this (internal) project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "DeliveryAddress": {
+              "description": "The address for delvieries of this project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "InvoiceAddress": {
+              "description": "The address for delvieries of this project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "Lead": {
+              "description": "The lead of the project",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "CustomFields": {
+              "description": "The custom fields of this project",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "Reportings": {
+              "description": "The user reportings of this project",
+              "type": "array",
+              "items": {
+                "description": "A user reporting represents a logged time of a user on a specific task in HQ.",
+                "type": "object"
+              }
+            },
+            "Files": {
+              "description": "The files of this project",
+              "type": "array",
+              "items": {
+                "description": "A file represents a user upload or HQ-generated PDF documents.",
+                "type": "object"
+              }
+            },
+            "Members": {
+              "description": "The members of this project",
+              "type": "array",
+              "items": {
+                "description": "A project member links a user to a project. It includes the project role and the charge rates\r\n            for the link.",
+                "type": "object"
+              }
+            },
+            "ContactHistories": {
+              "description": "Contact histories linked to this project.",
+              "type": "array",
+              "items": {
+                "description": "The contact history represents any contact you had with a contact person. For example, any meeting, phone call or email can be a contact history entry.",
+                "type": "object"
+              }
+            },
+            "ContactPersons": {
+              "description": "Contact persons linked to this project.",
+              "type": "array",
+              "items": {
+                "description": "A contact person represents a person that works for a company you do business with. A company can have many contact persons.",
+                "type": "object"
+              }
+            },
+            "Articles": {
+              "description": "All articles linked to the project",
+              "type": "array",
+              "items": {
+                "description": "An article is a stock item that your company sells, for example a digital camera. \r\n            An article can also be a service or activity that your company performs, for example a digital design. \r\n            Articles can be used to create positions on invoices or quotations, among others.",
+                "type": "object"
+              }
+            },
+            "ProjectBudgets": {
+              "description": "All articles linked to the project",
+              "type": "array",
+              "items": {
+                "description": "The project budget for a project",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "Note": {
+          "description": "The comment on the document",
+          "type": "string"
+        },
+        "CompanyPurchaseOrderNumber": {
+          "description": "The purchase order number on the document",
+          "type": "string"
+        },
+        "Language": {
+          "description": "The language of the document as two-letter ISOCode, for example 'DE'",
+          "type": "string"
+        },
+        "DocumentFile": {
+          "description": "The generated pdf file",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of the file",
+              "type": "string"
+            },
+            "Size": {
+              "format": "double",
+              "description": "The size in bytes",
+              "type": "number"
+            },
+            "HasContent": {
+              "description": "Returns true if the file has content (was uploaded yet)",
+              "type": "boolean"
+            },
+            "IsDirectory": {
+              "description": "Returns true if the file entity is a directory, otherwise false",
+              "type": "boolean"
+            },
+            "DirectoryId": {
+              "format": "int32",
+              "description": "The id of the parent directory",
+              "type": "integer"
+            },
+            "FileRelations": {
+              "description": "List of all relations of a",
+              "type": "array",
+              "items": {
+                "description": "A file relation represents a link between a file and another entity like a project or article.",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "DocumentImage": {
+          "description": "The generated pdf file, as an image",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of the file",
+              "type": "string"
+            },
+            "Size": {
+              "format": "double",
+              "description": "The size in bytes",
+              "type": "number"
+            },
+            "HasContent": {
+              "description": "Returns true if the file has content (was uploaded yet)",
+              "type": "boolean"
+            },
+            "IsDirectory": {
+              "description": "Returns true if the file entity is a directory, otherwise false",
+              "type": "boolean"
+            },
+            "DirectoryId": {
+              "format": "int32",
+              "description": "The id of the parent directory",
+              "type": "integer"
+            },
+            "FileRelations": {
+              "description": "List of all relations of a",
+              "type": "array",
+              "items": {
+                "description": "A file relation represents a link between a file and another entity like a project or article.",
+                "type": "object"
+              }
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "Id": {
+          "format": "int32",
+          "description": "The unique identifier of this entity",
+          "type": "integer"
+        },
+        "CreatedBy": {
+          "format": "int32",
+          "description": "The id of the user who created this entity",
+          "type": "integer"
+        },
+        "UpdatedBy": {
+          "format": "int32",
+          "description": "The id of the last user who modified this entity",
+          "type": "integer"
+        },
+        "CreatedOn": {
+          "format": "date-time",
+          "description": "The date and time this entity was created, in UTC",
+          "type": "string"
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "description": "The last date and time this entity was updated, in UTC",
+          "type": "string"
+        }
+      }
+    },
+    "DocumentPosition": {
+      "description": "A document position represents a position on a quotation or invoice.",
+      "required": [
+        "Id"
+      ],
+      "type": "object",
+      "properties": {
+        "IsOptional": {
+          "description": "Whether this position is optional. Only valid in quotations.",
+          "type": "boolean"
+        },
+        "Tax": {
+          "format": "double",
+          "description": "The position tax rate, for example 19%",
+          "type": "number"
+        },
+        "Price": {
+          "format": "decimal",
+          "description": "The position price, in the currency of the document",
+          "type": "number"
+        },
+        "Discount": {
+          "format": "double",
+          "description": "The percentage discount that should be applied to this position sum",
+          "type": "number"
+        },
+        "Margin": {
+          "format": "double",
+          "description": "The margin that should be applied to this position sum",
+          "type": "number"
+        },
+        "ExcludeFromEarlyPayment": {
+          "description": "Whether this position should be excluded from early payment discount calculations",
+          "type": "boolean"
+        },
+        "TotalPrice": {
+          "format": "double",
+          "description": "The total price under consideration of margin and discount",
+          "type": "number"
+        },
+        "TotalUnitPrice": {
+          "format": "double",
+          "description": "The total unit price under consideration of margin and discount",
+          "type": "number"
+        },
+        "TotalVat": {
+          "format": "double",
+          "description": "The total VAT of this position under consideration of margin and discount",
+          "type": "number"
+        },
+        "UserReportings": {
+          "description": "The user reportings which have been billed with this document position",
+          "type": "array",
+          "items": {
+            "description": "A user reporting represents a logged time of a user on a specific task in HQ.",
+            "required": [
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "Note": {
+                "description": "The user-provided note of this reporting",
+                "type": "string"
+              },
+              "Duration": {
+                "format": "int64",
+                "description": "The reporting duration, in seconds",
+                "type": "integer"
+              },
+              "UserId": {
+                "format": "int32",
+                "description": "The id of the user this reporting is for",
+                "type": "integer"
+              },
+              "User": {
+                "description": "The user this reporting is for",
+                "type": "object"
+              },
+              "ChargeRateValue": {
+                "format": "double",
+                "description": "The external charge rate value",
+                "type": "number"
+              },
+              "InternalChargeRateValue": {
+                "format": "double",
+                "description": "The internal charge rate value",
+                "type": "number"
+              },
+              "IsApproved": {
+                "description": "Whether this reporting was approved",
+                "type": "boolean"
+              },
+              "StartOn": {
+                "format": "date-time",
+                "description": "The date of the reporting",
+                "type": "string"
+              },
+              "BreakDuration": {
+                "format": "int64",
+                "description": "The break duration of this reporting, in seconds",
+                "type": "integer"
+              },
+              "ProjectId": {
+                "format": "int32",
+                "description": "The id of the project that this reporting belongs to",
+                "type": "integer"
+              },
+              "Project": {
+                "description": "The project that this reporting belongs to",
+                "type": "object"
+              },
+              "TaskId": {
+                "format": "int32",
+                "description": "The id of the task this reporting was created for",
+                "type": "integer"
+              },
+              "Task": {
+                "description": "The task this reporting was created for",
+                "type": "object"
+              },
+              "CurrencyInternalChargeRateValue": {
+                "description": "The ISO 4217 code of the currency of the internal charge rate value",
+                "maxLength": 3,
+                "minLength": 0,
+                "type": "string"
+              },
+              "CurrencyChargeRateValue": {
+                "description": "The ISO 4217 code of the currency of the external charge rate",
+                "maxLength": 3,
+                "minLength": 0,
+                "type": "string"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Text": {
+          "description": "The position text, as HTML",
+          "type": "string"
+        },
+        "Unit": {
+          "description": "The position unit",
+          "type": "string"
+        },
+        "Type": {
+          "description": "The type of this position",
+          "enum": [
+            "Article",
+            "Freetext",
+            "OpenPosition",
+            "UserReporting",
+            "ProjectInvoice",
+            "ProjectArticle",
+            "ProjectPlan",
+            "Subtotal",
+            "PositionGroup",
+            "GroupHeader",
+            "Textline"
+          ],
+          "type": "string"
+        },
+        "Order": {
+          "format": "int32",
+          "description": "The order of this position in the document",
+          "type": "integer"
+        },
+        "ArticleId": {
+          "format": "int32",
+          "description": "The Id of the article that is associated with this position",
+          "type": "integer"
+        },
+        "ProjectId": {
+          "format": "int32",
+          "description": "The Id Of the Project",
+          "type": "integer"
+        },
+        "Article": {
+          "description": "The article that is associated with this position",
+          "required": [
+            "Id"
+          ],
+          "type": "object",
+          "properties": {
+            "Name": {
+              "description": "The name of this article",
+              "type": "string"
+            },
+            "Number": {
+              "description": "The number as identifier of the article",
+              "type": "string"
+            },
+            "Description": {
+              "description": "The description of the article",
+              "type": "string"
+            },
+            "BaseType": {
+              "description": "The baset ype of the article",
+              "enum": [
+                "Stock",
+                "Action",
+                "Material",
+                "NotSet"
+              ],
+              "type": "string"
+            },
+            "CategoryId": {
+              "format": "int32",
+              "description": "The category ID of the article",
+              "type": "integer"
+            },
+            "Category": {
+              "description": "The article category",
+              "required": [
+                "Id"
+              ],
+              "type": "object",
+              "properties": {}
+            },
+            "SalesPrices": {
+              "description": "The list of possible sales prices",
+              "type": "array",
+              "items": {
+                "description": "An sales price represents a price of the article which can be used for creating ainvoice.",
+                "type": "object"
+              }
+            },
+            "PurchasingPrices": {
+              "description": "The list of possible purchasing prices",
+              "type": "array",
+              "items": {
+                "description": "A purchasing price represents a price of the article which can be used for creating a quotation.",
+                "type": "object"
+              }
+            },
+            "Stocks": {
+              "description": "The list of stocks this article can be stored in",
+              "type": "array",
+              "items": {
+                "description": "Represents the current stock of an article in a specific storage. Articles can have multiple stocks, one for each storage they are located in.",
+                "type": "object"
+              }
+            },
+            "CustomFields": {
+              "description": "The customfields associated with this article",
+              "type": "array",
+              "items": {
+                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+                "type": "object"
+              }
+            },
+            "Files": {
+              "description": "The files associated to the article",
+              "type": "array",
+              "items": {
+                "description": "A file represents a user upload or HQ-generated PDF documents.",
+                "type": "object"
+              }
+            },
+            "InternalExternalArticle": {
+              "description": "The Make or Buy type of this article",
+              "enum": [
+                "internalArticle",
+                "externalArticle",
+                "mixedArticle",
+                "NotSet"
+              ],
+              "type": "string"
+            },
+            "CostCenter1": {
+              "description": "The cost center 1 this article is associated with",
+              "type": "string"
+            },
+            "CostCenter2": {
+              "description": "The cost center 2 this article is associated with",
+              "type": "string"
+            },
+            "BookingAccount": {
+              "description": "The booking account this article is associated with",
+              "type": "string"
+            },
+            "Id": {
+              "format": "int32",
+              "description": "The unique identifier of this entity",
+              "type": "integer"
+            },
+            "CreatedBy": {
+              "format": "int32",
+              "description": "The id of the user who created this entity",
+              "type": "integer"
+            },
+            "UpdatedBy": {
+              "format": "int32",
+              "description": "The id of the last user who modified this entity",
+              "type": "integer"
+            },
+            "CreatedOn": {
+              "format": "date-time",
+              "description": "The date and time this entity was created, in UTC",
+              "type": "string"
+            },
+            "UpdatedOn": {
+              "format": "date-time",
+              "description": "The last date and time this entity was updated, in UTC",
+              "type": "string"
+            }
+          }
+        },
+        "Amount": {
+          "format": "double",
+          "description": "The amount of this position in this document",
+          "type": "number"
+        },
+        "ProjectBudgetId": {
+          "format": "int32",
+          "description": "The Id of the project budget",
+          "type": "integer"
+        },
+        "CostTypeId": {
+          "format": "int32",
+          "description": "The if of the costType",
+          "type": "integer"
+        },
+        "BookingAccount": {
+          "description": "The booking account this position is associated with",
+          "type": "string"
+        },
+        "CostCenter1": {
+          "description": "The cost center 1 this position is associated with",
+          "type": "string"
+        },
+        "CostCenter2": {
+          "description": "The cost center 2 this position is associated with",
+          "type": "string"
+        },
+        "CustomFields": {
+          "description": "The custom fields of this document position",
+          "type": "array",
+          "items": {
+            "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+            "required": [
+              "Name",
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "description": "The name of this custom field",
+                "type": "string"
+              },
+              "Value": {
+                "description": "The value of this custom field",
+                "type": "string"
+              },
+              "Type": {
+                "description": "The type of this custom field",
+                "type": "string"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "DocumentId": {
+          "format": "int32",
+          "description": "The Id of the document the position belongs to",
+          "type": "integer"
+        },
+        "Id": {
+          "format": "int32",
+          "description": "The unique identifier of this entity",
+          "type": "integer"
+        },
+        "CreatedBy": {
+          "format": "int32",
+          "description": "The id of the user who created this entity",
+          "type": "integer"
+        },
+        "UpdatedBy": {
+          "format": "int32",
+          "description": "The id of the last user who modified this entity",
+          "type": "integer"
+        },
+        "CreatedOn": {
+          "format": "date-time",
+          "description": "The date and time this entity was created, in UTC",
+          "type": "string"
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "description": "The last date and time this entity was updated, in UTC",
+          "type": "string"
+        }
+      }
+    },
     "ODataResponse[List[DeliveryNote]]": {
       "type": "object",
       "properties": {
@@ -24495,447 +27105,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "DocumentPosition": {
-      "description": "A document position represents a position on a quotation or invoice.",
-      "required": [
-        "Id"
-      ],
-      "type": "object",
-      "properties": {
-        "IsOptional": {
-          "description": "Whether this position is optional. Only valid in quotations.",
-          "type": "boolean"
-        },
-        "Tax": {
-          "format": "double",
-          "description": "The position tax rate, for example 19%",
-          "type": "number"
-        },
-        "Price": {
-          "format": "decimal",
-          "description": "The position price, in the currency of the document",
-          "type": "number"
-        },
-        "Discount": {
-          "format": "double",
-          "description": "The percentage discount that should be applied to this position sum",
-          "type": "number"
-        },
-        "Margin": {
-          "format": "double",
-          "description": "The margin that should be applied to this position sum",
-          "type": "number"
-        },
-        "ExcludeFromEarlyPayment": {
-          "description": "Whether this position should be excluded from early payment discount calculations",
-          "type": "boolean"
-        },
-        "TotalPrice": {
-          "format": "double",
-          "description": "The total price under consideration of margin and discount",
-          "type": "number"
-        },
-        "TotalUnitPrice": {
-          "format": "double",
-          "description": "The total unit price under consideration of margin and discount",
-          "type": "number"
-        },
-        "TotalVat": {
-          "format": "double",
-          "description": "The total VAT of this position under consideration of margin and discount",
-          "type": "number"
-        },
-        "UserReportings": {
-          "description": "The user reportings which have been billed with this document position",
-          "type": "array",
-          "items": {
-            "description": "A user reporting represents a logged time of a user on a specific task in HQ.",
-            "required": [
-              "Id"
-            ],
-            "type": "object",
-            "properties": {
-              "Note": {
-                "description": "The user-provided note of this reporting",
-                "type": "string"
-              },
-              "Duration": {
-                "format": "int64",
-                "description": "The reporting duration, in seconds",
-                "type": "integer"
-              },
-              "UserId": {
-                "format": "int32",
-                "description": "The id of the user this reporting is for",
-                "type": "integer"
-              },
-              "User": {
-                "description": "The user this reporting is for",
-                "type": "object"
-              },
-              "ChargeRateValue": {
-                "format": "double",
-                "description": "The external charge rate value",
-                "type": "number"
-              },
-              "InternalChargeRateValue": {
-                "format": "double",
-                "description": "The internal charge rate value",
-                "type": "number"
-              },
-              "IsApproved": {
-                "description": "Whether this reporting was approved",
-                "type": "boolean"
-              },
-              "StartOn": {
-                "format": "date-time",
-                "description": "The date of the reporting",
-                "type": "string"
-              },
-              "BreakDuration": {
-                "format": "int64",
-                "description": "The break duration of this reporting, in seconds",
-                "type": "integer"
-              },
-              "ProjectId": {
-                "format": "int32",
-                "description": "The id of the project that this reporting belongs to",
-                "type": "integer"
-              },
-              "Project": {
-                "description": "The project that this reporting belongs to",
-                "type": "object"
-              },
-              "TaskId": {
-                "format": "int32",
-                "description": "The id of the task this reporting was created for",
-                "type": "integer"
-              },
-              "Task": {
-                "description": "The task this reporting was created for",
-                "type": "object"
-              },
-              "CurrencyInternalChargeRateValue": {
-                "description": "The ISO 4217 code of the currency of the internal charge rate value",
-                "maxLength": 3,
-                "minLength": 0,
-                "type": "string"
-              },
-              "CurrencyChargeRateValue": {
-                "description": "The ISO 4217 code of the currency of the external charge rate",
-                "maxLength": 3,
-                "minLength": 0,
-                "type": "string"
-              },
-              "Id": {
-                "format": "int32",
-                "description": "The unique identifier of this entity",
-                "type": "integer"
-              },
-              "CreatedBy": {
-                "format": "int32",
-                "description": "The id of the user who created this entity",
-                "type": "integer"
-              },
-              "UpdatedBy": {
-                "format": "int32",
-                "description": "The id of the last user who modified this entity",
-                "type": "integer"
-              },
-              "CreatedOn": {
-                "format": "date-time",
-                "description": "The date and time this entity was created, in UTC",
-                "type": "string"
-              },
-              "UpdatedOn": {
-                "format": "date-time",
-                "description": "The last date and time this entity was updated, in UTC",
-                "type": "string"
-              }
-            }
-          }
-        },
-        "Text": {
-          "description": "The position text, as HTML",
-          "type": "string"
-        },
-        "Unit": {
-          "description": "The position unit",
-          "type": "string"
-        },
-        "Type": {
-          "description": "The type of this position",
-          "enum": [
-            "Article",
-            "Freetext",
-            "OpenPosition",
-            "UserReporting",
-            "ProjectInvoice",
-            "ProjectArticle",
-            "ProjectPlan",
-            "Subtotal",
-            "PositionGroup",
-            "GroupHeader",
-            "Textline"
-          ],
-          "type": "string"
-        },
-        "Order": {
-          "format": "int32",
-          "description": "The order of this position in the document",
-          "type": "integer"
-        },
-        "ArticleId": {
-          "format": "int32",
-          "description": "The Id of the article that is associated with this position",
-          "type": "integer"
-        },
-        "ProjectId": {
-          "format": "int32",
-          "description": "The Id Of the Project",
-          "type": "integer"
-        },
-        "Article": {
-          "description": "The article that is associated with this position",
-          "required": [
-            "Id"
-          ],
-          "type": "object",
-          "properties": {
-            "Name": {
-              "description": "The name of this article",
-              "type": "string"
-            },
-            "Number": {
-              "description": "The number as identifier of the article",
-              "type": "string"
-            },
-            "Description": {
-              "description": "The description of the article",
-              "type": "string"
-            },
-            "BaseType": {
-              "description": "The baset ype of the article",
-              "enum": [
-                "Stock",
-                "Action",
-                "Material",
-                "NotSet"
-              ],
-              "type": "string"
-            },
-            "CategoryId": {
-              "format": "int32",
-              "description": "The category ID of the article",
-              "type": "integer"
-            },
-            "Category": {
-              "description": "The article category",
-              "required": [
-                "Id"
-              ],
-              "type": "object",
-              "properties": {}
-            },
-            "SalesPrices": {
-              "description": "The list of possible sales prices",
-              "type": "array",
-              "items": {
-                "description": "An sales price represents a price of the article which can be used for creating ainvoice.",
-                "type": "object"
-              }
-            },
-            "PurchasingPrices": {
-              "description": "The list of possible purchasing prices",
-              "type": "array",
-              "items": {
-                "description": "A purchasing price represents a price of the article which can be used for creating a quotation.",
-                "type": "object"
-              }
-            },
-            "Stocks": {
-              "description": "The list of stocks this article can be stored in",
-              "type": "array",
-              "items": {
-                "description": "Represents the current stock of an article in a specific storage. Articles can have multiple stocks, one for each storage they are located in.",
-                "type": "object"
-              }
-            },
-            "CustomFields": {
-              "description": "The customfields associated with this article",
-              "type": "array",
-              "items": {
-                "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
-                "type": "object"
-              }
-            },
-            "Files": {
-              "description": "The files associated to the article",
-              "type": "array",
-              "items": {
-                "description": "A file represents a user upload or HQ-generated PDF documents.",
-                "type": "object"
-              }
-            },
-            "InternalExternalArticle": {
-              "description": "The Make or Buy type of this article",
-              "enum": [
-                "internalArticle",
-                "externalArticle",
-                "mixedArticle",
-                "NotSet"
-              ],
-              "type": "string"
-            },
-            "CostCenter1": {
-              "description": "The cost center 1 this article is associated with",
-              "type": "string"
-            },
-            "CostCenter2": {
-              "description": "The cost center 2 this article is associated with",
-              "type": "string"
-            },
-            "BookingAccount": {
-              "description": "The booking account this article is associated with",
-              "type": "string"
-            },
-            "Id": {
-              "format": "int32",
-              "description": "The unique identifier of this entity",
-              "type": "integer"
-            },
-            "CreatedBy": {
-              "format": "int32",
-              "description": "The id of the user who created this entity",
-              "type": "integer"
-            },
-            "UpdatedBy": {
-              "format": "int32",
-              "description": "The id of the last user who modified this entity",
-              "type": "integer"
-            },
-            "CreatedOn": {
-              "format": "date-time",
-              "description": "The date and time this entity was created, in UTC",
-              "type": "string"
-            },
-            "UpdatedOn": {
-              "format": "date-time",
-              "description": "The last date and time this entity was updated, in UTC",
-              "type": "string"
-            }
-          }
-        },
-        "Amount": {
-          "format": "double",
-          "description": "The amount of this position in this document",
-          "type": "number"
-        },
-        "ProjectBudgetId": {
-          "format": "int32",
-          "description": "The Id of the project budget",
-          "type": "integer"
-        },
-        "CostTypeId": {
-          "format": "int32",
-          "description": "The if of the costType",
-          "type": "integer"
-        },
-        "BookingAccount": {
-          "description": "The booking account this position is associated with",
-          "type": "string"
-        },
-        "CostCenter1": {
-          "description": "The cost center 1 this position is associated with",
-          "type": "string"
-        },
-        "CostCenter2": {
-          "description": "The cost center 2 this position is associated with",
-          "type": "string"
-        },
-        "CustomFields": {
-          "description": "The custom fields of this document position",
-          "type": "array",
-          "items": {
-            "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
-            "required": [
-              "Name",
-              "Id"
-            ],
-            "type": "object",
-            "properties": {
-              "Name": {
-                "description": "The name of this custom field",
-                "type": "string"
-              },
-              "Value": {
-                "description": "The value of this custom field",
-                "type": "string"
-              },
-              "Type": {
-                "description": "The type of this custom field",
-                "type": "string"
-              },
-              "Id": {
-                "format": "int32",
-                "description": "The unique identifier of this entity",
-                "type": "integer"
-              },
-              "CreatedBy": {
-                "format": "int32",
-                "description": "The id of the user who created this entity",
-                "type": "integer"
-              },
-              "UpdatedBy": {
-                "format": "int32",
-                "description": "The id of the last user who modified this entity",
-                "type": "integer"
-              },
-              "CreatedOn": {
-                "format": "date-time",
-                "description": "The date and time this entity was created, in UTC",
-                "type": "string"
-              },
-              "UpdatedOn": {
-                "format": "date-time",
-                "description": "The last date and time this entity was updated, in UTC",
-                "type": "string"
-              }
-            }
-          }
-        },
-        "DocumentId": {
-          "format": "int32",
-          "description": "The Id of the document the position belongs to",
-          "type": "integer"
-        },
-        "Id": {
-          "format": "int32",
-          "description": "The unique identifier of this entity",
-          "type": "integer"
-        },
-        "CreatedBy": {
-          "format": "int32",
-          "description": "The id of the user who created this entity",
-          "type": "integer"
-        },
-        "UpdatedBy": {
-          "format": "int32",
-          "description": "The id of the last user who modified this entity",
-          "type": "integer"
-        },
-        "CreatedOn": {
-          "format": "date-time",
-          "description": "The date and time this entity was created, in UTC",
-          "type": "string"
-        },
-        "UpdatedOn": {
-          "format": "date-time",
-          "description": "The last date and time this entity was updated, in UTC",
-          "type": "string"
         }
       }
     },
