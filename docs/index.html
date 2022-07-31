@@ -35,7 +35,7 @@
           href="http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html">OData 4.0</a>
         standard for retrieving, creating, updating and deleting entities through RESTful
         HTTP requests.</p>
-      <p><strong>Base URL:</strong> <code>https://api.hqlabs.de</code></p>
+      <p><strong>Base URL:</strong> <code>https://api.hellohq.io</code></p>
       <p><strong>Before you get started, you need to register your client application in the HQ
           admin panel.</strong></p>
       <h1 id="authentication">Authentication</h1>
@@ -112,7 +112,7 @@
         <li><code>Scope</code>: a space-separated list of API scopes</li>
       </ul>
       <p><strong>Example:</strong></p>
-      <pre><code>GET https:<span class="hljs-comment">//api.hqlabs.de/Account/Authorize</span>
+      <pre><code>GET https:<span class="hljs-comment">//api.hellohq.io/Account/Authorize</span>
                                 ?response_type=code
                                 <span class="hljs-variable">&amp;client_id</span>=<span class="hljs-number">1234</span>-testapp
                                 <span class="hljs-variable">&amp;state</span>=xyz
@@ -161,7 +161,7 @@
         to the <code>Authorization</code> header as follows: <code>Authorization: Basic
                         Base64({AppId}:{AppSecret})</code></p>
       <p><strong>Example:</strong></p>
-      <p><code>POST https://api.hqlabs.de/Token</code></p>
+      <p><code>POST https://api.hellohq.io/Token</code></p>
       <pre><code>redirect_uri=https:<span class="hljs-comment">//client.example.com/cb</span>
                           <span class="hljs-variable">&amp;grant_type</span>=authorization_code
                           <span class="hljs-variable">&amp;code</span>=MWG5HTnFn9n8HJ
@@ -210,7 +210,7 @@
           Base64({AppId}:{AppSecret})</li>
       </ul>
       <p><strong>Example:</strong></p>
-      <p><code>POST https://api.hqlabs.de/Token</code></p>
+      <p><code>POST https://api.hellohq.io/Token</code></p>
       <pre><code><span class="hljs-attr">grant_type</span>=refresh_token&amp;refresh_token=K8vma4VohMb...
                         </code></pre>
       <p><strong>Example:</strong></p>
