@@ -814,8 +814,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-07-31T19:30:20.5160586Z",
-                      "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
+                      "CreatedOn": "2022-09-26T07:47:46.6139555Z",
+                      "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
                     }
                   ],
                   "Files": null,
@@ -823,8 +823,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:20.5160586Z",
-                  "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
+                  "CreatedOn": "2022-09-26T07:47:46.6139555Z",
+                  "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
                 },
                 {
                   "Name": "Company B",
@@ -851,8 +851,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-07-31T19:30:20.5160586Z",
-                      "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
+                      "CreatedOn": "2022-09-26T07:47:46.6139555Z",
+                      "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
                     }
                   ],
                   "Files": null,
@@ -860,8 +860,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:20.5160586Z",
-                  "UpdatedOn": "2022-07-31T19:30:20.5160586Z"
+                  "CreatedOn": "2022-09-26T07:47:46.6139555Z",
+                  "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
                 }
               ]
             }
@@ -1589,8 +1589,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:20.7548236Z",
-                  "UpdatedOn": "2022-07-31T19:30:20.7548236Z"
+                  "CreatedOn": "2022-09-26T07:47:46.838247Z",
+                  "UpdatedOn": "2022-09-26T07:47:46.838247Z"
                 }
               ]
             }
@@ -2436,6 +2436,31 @@
         }
       }
     },
+    "/v1/CreditNotes({Id})/DocumentFile/$value": {
+      "get": {
+        "tags": [
+          "Documents - Credit Notes"
+        ],
+        "summary": "Returns the real binary data",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ODataResponse[List[Byte]]"
+            }
+          }
+        }
+      }
+    },
     "/v1/DeliveryNotes": {
       "get": {
         "tags": [
@@ -2772,8 +2797,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:21.4977651Z",
-                  "UpdatedOn": "2022-07-31T19:30:21.4977651Z"
+                  "CreatedOn": "2022-09-26T07:47:47.4711506Z",
+                  "UpdatedOn": "2022-09-26T07:47:47.4711506Z"
                 },
                 {
                   "Name": "7 Days",
@@ -2788,8 +2813,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:21.4977651Z",
-                  "UpdatedOn": "2022-07-31T19:30:21.4977651Z"
+                  "CreatedOn": "2022-09-26T07:47:47.4711506Z",
+                  "UpdatedOn": "2022-09-26T07:47:47.4711506Z"
                 }
               ]
             }
@@ -2853,8 +2878,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:21.5632555Z",
-                  "UpdatedOn": "2022-07-31T19:30:21.5632555Z"
+                  "CreatedOn": "2022-09-26T07:47:47.540658Z",
+                  "UpdatedOn": "2022-09-26T07:47:47.540658Z"
                 },
                 {
                   "Name": "Akonto",
@@ -2865,8 +2890,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-07-31T19:30:21.5632555Z",
-                  "UpdatedOn": "2022-07-31T19:30:21.5632555Z"
+                  "CreatedOn": "2022-09-26T07:47:47.540658Z",
+                  "UpdatedOn": "2022-09-26T07:47:47.540658Z"
                 }
               ]
             }
@@ -10219,6 +10244,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -11939,6 +11980,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -13195,6 +13252,22 @@
                 "description": "The leaving date of the user",
                 "type": "string"
               },
+              "PhoneLandlinePrivate": {
+                "description": "The private phone number of the user - landline",
+                "type": "string"
+              },
+              "PhoneLandlineWork": {
+                "description": "The work phone number of the user - landline",
+                "type": "string"
+              },
+              "PhoneMobilePrivate": {
+                "description": "The private phone number of the user - mobile",
+                "type": "string"
+              },
+              "PhoneMobileWork": {
+                "description": "The work phon number of the user - mobile",
+                "type": "string"
+              },
               "UserWorkingHours": {
                 "description": "The custom fields of the user",
                 "type": "array"
@@ -13555,6 +13628,22 @@
         "LeavingDate": {
           "format": "date-time",
           "description": "The leaving date of the user",
+          "type": "string"
+        },
+        "PhoneLandlinePrivate": {
+          "description": "The private phone number of the user - landline",
+          "type": "string"
+        },
+        "PhoneLandlineWork": {
+          "description": "The work phone number of the user - landline",
+          "type": "string"
+        },
+        "PhoneMobilePrivate": {
+          "description": "The private phone number of the user - mobile",
+          "type": "string"
+        },
+        "PhoneMobileWork": {
+          "description": "The work phon number of the user - mobile",
           "type": "string"
         },
         "UserWorkingHours": {
@@ -14594,6 +14683,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -15224,6 +15329,22 @@
             "LeavingDate": {
               "format": "date-time",
               "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
               "type": "string"
             },
             "UserWorkingHours": {
@@ -16172,6 +16293,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -16389,6 +16526,22 @@
             "LeavingDate": {
               "format": "date-time",
               "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
               "type": "string"
             },
             "UserWorkingHours": {
@@ -18429,6 +18582,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -18840,6 +19009,22 @@
             "LeavingDate": {
               "format": "date-time",
               "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
               "type": "string"
             },
             "UserWorkingHours": {
@@ -22666,6 +22851,10 @@
                 "description": "The positions of this invoice",
                 "type": "array"
               },
+              "Status": {
+                "description": "The status of this credit note",
+                "type": "string"
+              },
               "Currency": {
                 "description": "The ISO 4217 code of the currency of this document.",
                 "maxLength": 3,
@@ -23051,6 +23240,20 @@
               }
             }
           }
+        },
+        "Status": {
+          "description": "The status of this credit note",
+          "enum": [
+            "Draft",
+            "WaitingForReview",
+            "Sent",
+            "PartlyPaid",
+            "CompletelyPaid",
+            "Canceled",
+            "WaitingForApproval",
+            "Approved"
+          ],
+          "type": "string"
         },
         "Currency": {
           "description": "The ISO 4217 code of the currency of this document.",
@@ -23812,6 +24015,22 @@
             "LeavingDate": {
               "format": "date-time",
               "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
               "type": "string"
             },
             "UserWorkingHours": {
@@ -24911,6 +25130,21 @@
         }
       }
     },
+    "ODataResponse[List[Byte]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
     "ODataResponse[List[DeliveryNote]]": {
       "type": "object",
       "properties": {
@@ -25919,6 +26153,22 @@
             "LeavingDate": {
               "format": "date-time",
               "description": "The leaving date of the user",
+              "type": "string"
+            },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
               "type": "string"
             },
             "UserWorkingHours": {
@@ -28267,6 +28517,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -30591,6 +30857,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -31244,21 +31526,6 @@
           "format": "date-time",
           "description": "The last date and time this entity was updated, in UTC",
           "type": "string"
-        }
-      }
-    },
-    "ODataResponse[List[Byte]]": {
-      "type": "object",
-      "properties": {
-        "@odata.context": {
-          "type": "string"
-        },
-        "value": {
-          "type": "array",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          }
         }
       }
     },
@@ -35430,6 +35697,22 @@
               "description": "The leaving date of the user",
               "type": "string"
             },
+            "PhoneLandlinePrivate": {
+              "description": "The private phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneLandlineWork": {
+              "description": "The work phone number of the user - landline",
+              "type": "string"
+            },
+            "PhoneMobilePrivate": {
+              "description": "The private phone number of the user - mobile",
+              "type": "string"
+            },
+            "PhoneMobileWork": {
+              "description": "The work phon number of the user - mobile",
+              "type": "string"
+            },
             "UserWorkingHours": {
               "description": "The custom fields of the user",
               "type": "array",
@@ -38149,6 +38432,22 @@
               "LeavingDate": {
                 "format": "date-time",
                 "description": "The leaving date of the user",
+                "type": "string"
+              },
+              "PhoneLandlinePrivate": {
+                "description": "The private phone number of the user - landline",
+                "type": "string"
+              },
+              "PhoneLandlineWork": {
+                "description": "The work phone number of the user - landline",
+                "type": "string"
+              },
+              "PhoneMobilePrivate": {
+                "description": "The private phone number of the user - mobile",
+                "type": "string"
+              },
+              "PhoneMobileWork": {
+                "description": "The work phon number of the user - mobile",
                 "type": "string"
               },
               "UserWorkingHours": {
