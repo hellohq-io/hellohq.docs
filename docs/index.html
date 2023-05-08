@@ -161,11 +161,20 @@
         to the <code>Authorization</code> header as follows: <code>Authorization: Basic
                         Base64({AppId}:{AppSecret})</code></p>
       <p><strong>Example:</strong></p>
+      <p><strong>Url:</strong></p>
       <p><code>POST https://api.hqlabs.de/Token</code></p>
-      <pre><code>redirect_uri=https:<span class="hljs-comment">//client.example.com/cb</span>
-                          <span class="hljs-variable">&amp;grant_type</span>=authorization_code
-                          <span class="hljs-variable">&amp;code</span>=MWG5HTnFn9n8HJ
-                        </code></pre>
+      <p><strong>Header:</strong></p>
+      <span class="hljs-variable">Content-Type</span>=application/x-www-form-urlencoded
+      <p><strong>Body:</strong></p>
+      <code>
+        <p><span class="hljs-variable">redirect_uri</span>=https://client.example.com/cb</p>
+        <p><span class="hljs-variable">grant_type</span>=authorization_code</p>
+        <p><span class="hljs-variable">code</span>=MWG5HTnFn9n8HJ => 'Code from authorize call'</p>
+        <p><span class="hljs-variable">client_id</span>=1234-testapp  =>'From hellHQ UI'</p>
+        <p><span class="hljs-variable">client_secret</span>=fkgjqoer9tfiealdkcmakwhdf  =>'From hellHQ UI'</p>
+        <p><span class="hljs-variable">scope</span>=read_all write_all</p>
+        </code>
+      
       <p><strong>Note:</strong> All query parameters (especially the <code>RedirectUri</code>) should be properly
         URL-encoded.</p>
       <h4 id="access-token-response">Access Token Response</h4>

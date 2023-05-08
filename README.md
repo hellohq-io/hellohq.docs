@@ -110,12 +110,13 @@ access
 
 **Example:**
 ```
-GET https://api.hqlabs.de/Account/Authorize
-        ?response_type=code
-        &client_id=1234-testapp
-        &state=xyz
-        &redirect_uri=https://client.example.com/cb
-        &scope=read_all write_all
+curl --request GET \
+  --url 'https://api.hqlabs.de/Account/Authorize
+  ?response_type=code
+  &client_id=1234-testapp => 'From hellHQ UI'
+  &state=xyz
+  &redirect_uri=https%3A%2F%2Flocalhost%3A8090
+  &scope=read_all%20write_all'
 ```
 
 **Note:** the generated URL needs to be opened in a browser window so that the
@@ -170,12 +171,16 @@ Base64({AppId}:{AppSecret})`
 
 **Example:**
 
-`POST https://api.hqlabs.de/Token`
-
 ```
-redirect_uri=https://client.example.com/cb
-  &grant_type=authorization_code
-  &code=MWG5HTnFn9n8HJ
+curl --request POST \
+  --url https://api.hqlabs.de/Token \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data client_id=1234-testapp =>'From hellHQ UI' \
+  --data 'scope=read_all write_all' \
+  --data redirect_uri=https://client.example.com/cb \
+  --data grant_type=authorization_code \
+  --data client_secret=fkgjqoer9tfiealdkcmakwhdf => 'From hellHQ UI' \
+  --data code='Code from authorize call'
 ```
 
 **Note:** All query parameters (especially the `RedirectUri`) should be properly URL-encoded.
