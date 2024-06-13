@@ -138,12 +138,12 @@
             <a id="api_v2" href="javascript:void(0)">API v2</a>
             <div class="dropdown-content">
                 <a href="#content1" onclick="showContent('v2_auth', 'api_v2')">Authentication</a>
-                <a href="#content2" onclick="showContent('content2', 'api_v2')">Filtering</a>
-                <a href="#content3" onclick="showContent('content3', 'api_v2')">Ordering</a>
-                <a href="#content4" onclick="showContent('content4', 'api_v2')">Pagination</a>
-                <a href="#content5" onclick="showContent('content5', 'api_v2')">Permissions</a>
-                <a href="#content6" onclick="showContent('content6', 'api_v2')">Rate Limits</a>
-                <a href="#content6" onclick="showContent('content7', 'api_v2')">Endpoints</a>
+                <a href="#content2" onclick="showContent('v2_filter', 'api_v2')">Filtering</a>
+                <a href="#content3" onclick="showContent('v2_order', 'api_v2')">Ordering</a>
+                <a href="#content4" onclick="showContent('v2_pagination', 'api_v2')">Pagination</a>
+                <a href="#content5" onclick="showContent('v2_permissions', 'api_v2')">Permissions</a>
+                <a href="#content6" onclick="showContent('v2_rate', 'api_v2')">Rate Limits</a>
+                <a href="#content6" onclick="showContent('v2_edpoints', 'api_v2')">Endpoints</a>
             </div>
         </li>
         <li class="dropdown">
@@ -454,23 +454,27 @@
     <h2 id="http-codes">HTTP Codes</h2>
     <p>Each response to an API request indicates the success with its status code.</p>
     <h3 id="success-status-codes">Success Status Codes</h3>
-    <pre><code>
-                        <span class="hljs-selector-tag">GET</span>           <span class="hljs-selector-tag">200</span> (OK)     
-                        <span class="hljs-selector-tag">POST</span>          <span class="hljs-selector-tag">201</span> (Created)     
-                        <span class="hljs-selector-tag">PUT</span>           <span class="hljs-selector-tag">200</span> (OK)     
-                        <span class="hljs-selector-tag">DELETE</span>        <span class="hljs-selector-tag">204</span> (No content)     
-                        <span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">200</span> (OK)            <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">base</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">changed</span>
-                        <span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">201</span> (Created)       <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">created</span>
-                        </code></pre>
+    <div class="code-block">
+    <pre>
+        <code>
+<span class="hljs-selector-tag">GET</span>           <span class="hljs-selector-tag">200</span> (OK)     
+<span class="hljs-selector-tag">POST</span>          <span class="hljs-selector-tag">201</span> (Created)     
+<span class="hljs-selector-tag">PUT</span>           <span class="hljs-selector-tag">200</span> (OK)     
+<span class="hljs-selector-tag">DELETE</span>        <span class="hljs-selector-tag">204</span> (No content)     
+<span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">200</span> (OK)            <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">base</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">changed</span>
+<span class="hljs-selector-tag">do</span><span class="hljs-selector-class">.Action</span>()   <span class="hljs-selector-tag">201</span> (Created)       <span class="hljs-selector-tag">If</span> <span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">entity</span> <span class="hljs-selector-tag">was</span> <span class="hljs-selector-tag">created</span>
+        </code>
+    </pre>
+    </div>
     <p>The body of the reponse with status code 200 and 201 contain the changed/created
         object. Responses with code 204 always return an empty body.</p>
     <h3 id="failure-status-codes">Failure Status Codes</h3>
-    <pre><code>
-                        GET / PUT / <span class="hljs-keyword">DELETE</span> / do.Action()   <span class="hljs-number">404</span> (<span class="hljs-keyword">Not</span> <span class="hljs-keyword">Found</span>)     <span class="hljs-keyword">No</span> <span class="hljs-keyword">object</span> <span class="hljs-keyword">found</span> / Invalid <span class="hljs-keyword">Id</span>
-                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request <span class="hljs-keyword">body</span>
-                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request argument
-                        POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Validation</span> <span class="hljs-keyword">failed</span>
-                        </code></pre>
+    <div class="code-block"><pre><code>
+GET / PUT / <span class="hljs-keyword">DELETE</span> / do.Action()   <span class="hljs-number">404</span> (<span class="hljs-keyword">Not</span> <span class="hljs-keyword">Found</span>)     <span class="hljs-keyword">No</span> <span class="hljs-keyword">object</span> <span class="hljs-keyword">found</span> / Invalid <span class="hljs-keyword">Id</span>
+POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request <span class="hljs-keyword">body</span>
+POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Missing</span> request argument
+POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad request)   <span class="hljs-keyword">Validation</span> <span class="hljs-keyword">failed</span>
+    </code></pre></div>
     <h2 id="dates-and-times">Dates and Times</h2>
     <p>The date and time information is generally in UTC. The client is responsible for
         converting the date and time information to user time. The user object contains
