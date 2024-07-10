@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <title>Navigation mit Kontextmenü</title>
+    <title>helloHQ API documentation</title>
     <style>
         body {
             font-family: "Open Sans",  Arial, sans-serif;
@@ -87,19 +87,24 @@
         }
         .content {
             display: none;
-            padding: 60px 20px;
+            padding: 25px 45px 20px 40px;
         }
 
         .code-block {
             position: relative;
             background-color: rgba(255, 0, 0, 0.1);
             border-radius: 10px;
-            padding: 20px;
+            padding-left: 20px;
             margin: 20px;
             font-family: monospace;
             text-align: left;
             overflow: auto;
         }
+        
+        pre {
+            margin: unset;
+        }
+        
         .copy-button {
             position: absolute;
             top: 10px;
@@ -143,15 +148,11 @@
                 <a href="#content4" onclick="showContent('v2_pagination', 'api_v2')">Pagination</a>
                 <a href="#content5" onclick="showContent('v2_permissions', 'api_v2')">Permissions</a>
                 <a href="#content6" onclick="showContent('v2_rate', 'api_v2')">Rate Limits</a>
-                <a href="#content6" onclick="showContent('v2_edpoints', 'api_v2')">Endpoints</a>
+                <a href="#content6" onclick="showContent('v2_endpoints', 'api_v2')">Endpoints</a>
             </div>
         </li>
-        <li class="dropdown">
-            <a href="javascript:void(0)">Community</a>
-            <div class="dropdown-content">
-                <a href="#" onclick="showContent('content5')">Untereintrag 3-1</a>
-                <a href="#" onclick="showContent('content6')">Untereintrag 3-2</a>
-            </div>
+        <li>
+            <a href="https://github.com/hellohq-io/hellohq.docs/issues" target="_blank">Community</a>
         </li>
     </ul>
 </div>
@@ -503,45 +504,163 @@ POST / PUT / do.Action()           <span class="hljs-number">400</span> (Bad req
 <!--content v2-->
 
 <div id="v2_auth" class="content">
-    <h2>Untereintrag 1-1 Inhalt</h2>
-    <p>Das ist der Inhalt für Untereintrag 1-1.</p>
+    <h2>Authentication</h2>
+    <p>To access our API you need a access token.</p>
+    <p>To get an access token please go into your helloHQ system. <br>
+        Under <b>Admin => Settings => API-Clients</b> you can create and mange your access tokens.</p>
+    <br>
+    The token contains much information about the client and the user. All option you can specify when a new token is created.
+    <br> todo add screenshot
 </div>
 <div id="v2_filter" class="content">
-    <h2>Untereintrag 1-2 Inhalt</h2>
-    <p>Das ist der Inhalt für Untereintrag 1-2.</p>
-
     <h1>Filtering</h1>
 
     <p>The helloHQ API supports a huge set of filters that can be executed on all our API controllers.</p>
     <p></p>
-    <p>There is one important step. please encode the URL's you use:</p>
+    <p>There is one important step. Please encode the URL's you use:</p>
     <div class="code-block">
         <button class="copy-button" onclick="copyToClipboard(this.parentElement)">
-                    <span class="material-symbols-outlined">
-content_copy
-</span>
+            <span class="material-symbols-outlined">content_copy</span>
         </button>
         <pre>
-                    <code>
-// Dies ist ein Beispielcode
-function helloWorld() {
-    console.log('Hallo Welt!');
-}
-helloWorld();
-                        
+            <code>                 
 filter=name eq 'hello %26 hq' <- correct
 filter=name eq 'helllo & hq' <- incorrect
+            </code>
+        </pre>
+    </div>
+    
+    <h2>Operator</h2>
+    
+    <table>
+        <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>eq</td>
+            <td>Equal</td>
+            <td class="code-block">
+                <button class="copy-button" onclick="copyToClipboard(this.parentElement)">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
+                <pre>
+                    <code>                 
+filter=name eq 'hellohq'
                     </code>
                 </pre>
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>ne</td>
+            <td>Not equal</td>
+            <td>name ne 'hellohq'</td>
+        </tr>
+        <tr>
+            <td>gt</td>
+            <td>Greater than</td>
+            <td>age gt 18</td>
+        </tr>
+        <tr>
+            <td>ge</td>
+            <td>Greater than or equal</td>
+            <td>age ge 18</td>
+        </tr>
+        <tr>
+            <td>lt</td>
+            <td>Less than</td>
+            <td>age lt 18</td>
+        </tr>
+        <tr>
+            <td>le</td>
+            <td>Less than or equal</td>
+            <td>age le 18</td>
+        </tr>
+        <tr>
+            <td>and</td>
+            <td>Logical and</td>
+            <td>age ge 18 and age le 30</td>
+        </tr>
+        <tr>
+            <td>or</td>
+            <td>Logical or</td>
+            <td>age lt 18 or age gt 30</td>
+        </tr>
+        <tr>
+            <td>not</td>
+            <td>Logical negation</td>
+            <td>not age eq 18</td>
+        </tr>
+        <tr>
+            <td>add</td>
+            <td>Addition</td>
+            <td>price add 5</td>
+        </tr>
+        <tr>
+            <td>sub</td>
+            <td>Subtraction</td>
+            <td>price sub 5</td>
+        </tr>
+        <tr>
+            <td>mul</td>
+            <td>Multiplication</td>
+            <td>price mul 5</td>
+        </tr>
+        <tr>
+            <td>div</td>
+            <td>Division</td>
+    </table>
+
+    <h2>Data types</h2>
+    
+    <table>
+        <tr>
+            <th>Data type</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>name eq 'hellohq'</td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td>is_active eq true</td>
+        </tr>
+        <tr>
+            <td>Integer</td>
+            <td>age eq 18</td>
+        </tr>
+        <tr>
+            <td>Decimal</td>
+            <td>price eq 18.5</td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>created_on eq 2021-01-01</td>
+        </tr>
+        <tr>
+            <td>Time</td>
+            <td>created_on eq 2021-01-01T12:00:00</td>
+        </tr>
+        <tr>
+            <td>DateTime</td>
+            <td>created_on eq 2021-01-01T12:00:00Z</td>
+        </tr>
+    </table>
 </div>
+
 <div id="v2_order" class="content">
     <h2>Untereintrag 2-1 Inhalt</h2>
     <p>Das ist der Inhalt für Untereintrag 2-1.</p>
 </div>
 <div id="v2_pagination" class="content">
-    <h2>Untereintrag 2-2 Inhalt</h2>
-    <p>Das ist der Inhalt für Untereintrag 2-2.</p>
+    <h1>Pagination</h1>
+    <p>On every response we return two headers:</p>
+    <ul>
+        <li><code>helloHQ-Count</code>: The total number of items in the collection.</li>
+        <li><code>helloHQ-NextLink</code>: The next url you need to call for the next batch. This header is empty when no more data are available anymore.</li>
+    </ul>
 </div>
 <div id="v2_permissions" class="content">
     <h2>Untereintrag 3-1 Inhalt</h2>
@@ -559,18 +678,38 @@ filter=name eq 'helllo & hq' <- incorrect
 
 
 <!--inital contnet-->
-<h1 id="further-references">Further References</h1>
-<p>Please refer to the following pages and guides to learn how to use our API.</p>
-<ul>
-    <li><strong>OData</strong>: <a href="http://www.odata.org/">http://www.odata.org/</a></li>
-    <li><strong>OAuth 2.0</strong>: <a href="http://oauth.net/2/">http://oauth.net/2/</a></li>
-    <li><strong>HQ Help</strong>: <a href="http://help.hellohq.io">http://help.hellohq.io</a></li>
-</ul>
+<div style="margin:25px 45px 20px 40px;">
+    <div id="default-content">
+        <p><strong>Hi, nice to see you!</strong></p>
 
-<div class="_footer">
-    <a href="https://www.hellohq.io/Impressum/" target="_blank">Impressum</a> & <a
-        href="https://www.hellohq.io/Datenschutz/" target="_blank">Datenschutz</a>
+        <p>This is the developer guide for the HQ API, which allows developers access to a
+            wide range of entities and business logic of the HQ.</p>
+        <h1 id="introduction">Introduction</h1>
+        <p>The HQ API allows access to your data. To do so, it follows the <a
+                href="http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html">OData 4.0</a>
+            standard for retrieving, creating, updating and deleting entities through RESTful
+            HTTP requests.</p>
+        <p><strong>Base URL:</strong> <code>https://api.hellohq.io</code></p>
+        <p><strong>Before you get started, you need to register your client application in the HQ
+            admin panel.</strong></p>
+
+        <h1 id="further-references">Further References</h1>
+        <p>Please refer to the following pages and guides to learn how to use our API.</p>
+        <ul>
+            <li><strong>OData</strong>: <a href="http://www.odata.org/">http://www.odata.org/</a></li>
+            <li><strong>OAuth 2.0</strong>: <a href="http://oauth.net/2/">http://oauth.net/2/</a></li>
+            <li><strong>HQ Help</strong>: <a href="http://help.hellohq.io">http://help.hellohq.io</a></li>
+        </ul>
+    </div>
+    
+
+    <div class="_footer">
+        <a href="https://www.hellohq.io/Impressum/" target="_blank">Impressum</a> & <a
+            href="https://www.hellohq.io/Datenschutz/" target="_blank">Datenschutz</a>
+    </div>  
+    
 </div>
+
 
 <script>
 
@@ -605,6 +744,8 @@ filter=name eq 'helllo & hq' <- incorrect
             link.classList.remove('active');
         });
         document.getElementById(parentContentId).classList.add('active');
+
+        document.getElementById("default-content").style.display = 'none';
     }
 
     function copyToClipboard(codeBlock) {
