@@ -1,31 +1,52 @@
 name: Sync to Another Organization
 
+#on:
+#  push:
+#    branches:
+#      - '*'
+#
+#jobs:
+#  sync:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout Source Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Get Branch Name
+#        id: get_branch
+#        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+#
+#      - name: Set up Git
+#        run: |
+#          git config --global user.name "monderino"
+#          git config --global user.email "sven-boris.bornemann@everii.io"
+#
+#      - name: Add Target Repository as Remote
+#        run: |
+#          git remote add target https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/everii-Group/helloHQ-developer-docs.git
+#
+#      - name: Push to Target Repository
+#        run: |
+#          git push target ${{ env.BRANCH_NAME }} --force --verbose
+
 on:
-  push:
-    branches:
-      - '*'
+  - push
+  - delete
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
+    name: Git Repo Sync
     steps:
-      - name: Checkout Source Repository
-        uses: actions/checkout@v2
-
-      - name: Get Branch Name
-        id: get_branch
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
-
-      - name: Set up Git
-        run: |
-          git config --global user.name "monderino"
-          git config --global user.email "sven-boris.bornemann@everii.io"
-
-      - name: Add Target Repository as Remote
-        run: |
-          git remote add target https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/everii-Group/helloHQ-developer-docs.git
-
-      - name: Push to Target Repository
-        run: |
-          git push target ${{ env.BRANCH_NAME }} --force --verbose
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: wangchucheng/git-repo-sync@v0.1.0
+        with:
+          # Such as https://github.com/wangchucheng/git-repo-sync.git
+          target-url: https://github.com/everii-Group/helloHQ-developer-docs.git
+          # Such as wangchucheng
+          target-username: monderino
+          # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as ${{ secrets.ACCESS_TOKEN }}
+          target-token: ${{ secrets.EVERII_SYNC }}
