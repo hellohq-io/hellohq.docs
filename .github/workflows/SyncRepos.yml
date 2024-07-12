@@ -1,0 +1,38 @@
+name: Sync to Another Organization
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v2
+
+      - name: Get Branch Name
+        id: get_branch
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "monderino"
+          git config --global user.email "sven-boris.bornemann@everii.io"
+          
+      - name: Debug Repository Info
+        run: |
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Branch: ${{ env.BRANCH_NAME }}"
+          echo "Remote URL: https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/dein-ziel-org/dein-ziel-repo.git"
+
+
+      - name: Add Target Repository as Remote
+        run: |
+          git remote add target https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/everii-Group/helloHQ-developer-docs.git
+
+      - name: Push to Target Repository
+        run: |
+          git push target ${{ env.BRANCH_NAME }} --force
