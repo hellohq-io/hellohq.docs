@@ -28,7 +28,6 @@ jobs:
           echo "Branch: ${{ env.BRANCH_NAME }}"
           echo "Remote URL: https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/dein-ziel-org/dein-ziel-repo.git"
 
-
       - name: Add Target Repository as Remote
         run: |
           git remote add target https://$GITHUB_ACTOR:${{ secrets.EVERII_SYNC }}@github.com/everii-Group/helloHQ-developer-docs.git
