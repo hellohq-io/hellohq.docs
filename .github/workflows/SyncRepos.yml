@@ -21,4 +21,4 @@ jobs:
           git remote add destination https://github.com/everii-Group/helloHQ-developer-docs.git
           git push destination ${{ env.BRANCH_NAME }} --force
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_EVERII_SYNC }}
+          GITHUB_TOKEN: ${{ secrets.EVERII_SYNC }}
