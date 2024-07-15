@@ -24,7 +24,7 @@ jobs:
 
       - name: Add Target Repository as Remote
         run: |
-          git remote add target https://monderino:${{secrets.EVERII_SYNC}}@github.com/everii-Group/helloHQ-developer-docs.git
+          git remote add target 'https://monderino:${{secrets.EVERII_SYNC}}@github.com/everii-Group/helloHQ-developer-docs.git'
 
       - name: Push to Target Repository
         run: |
