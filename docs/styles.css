@@ -3,22 +3,55 @@ body, html {
   padding: 0;
 }
 
+
+/* colors */
+:root {
+  --main-red: #fa6d8b;
+  --main-red-rgb: 250, 109, 139; /* RGB equivalent of #fa6d8b */
+  --color-ui-red: #C80F50;
+  --color-ui-red-rgb: 200, 15, 80; /* RGB equivalent of #C80F50 */
+  --dark-red-1: #DE4E6D;
+  --dark-red-1-rgb: 222, 78, 109; /* RGB equivalent of #DE4E6D */
+  --dark-red-2: #C80F50;
+  --dark-red-2-rgb: 200, 15, 80; /* RGB equivalent of #C80F50 */
+  --light-red-2: #FBBAC8;
+  --light-red-2-rgb: 251, 186, 200; /* RGB equivalent of #FBBAC8 */
+  --light-red-1: #FF92AA;
+  --light-red-1-rgb: 255, 146, 170; /* RGB equivalent of #FF92AA */
+
+  --gray-2: #e1edfc;
+  --gray-2-rgb: 225, 237, 252; /* RGB equivalent of #e1edfc */
+  --gray-3: #a7bcd7;
+  --gray-3-rgb: 167, 188, 215; /* RGB equivalent of #a7bcd7 */
+  --gray-4: #587292;
+  --gray-4-rgb: 88, 114, 146; /* RGB equivalent of #587292 */
+  --color-text-normal: var(--gray-4);
+
+  --color-ui-purple: #D48DFA;
+  --color-ui-purple-rgb: 212, 141, 250; /* RGB equivalent of #D48DFA */
+  --light-purple-1: #F0D7FE;
+  --light-purple-1-rgb: 240, 215, 254; /* RGB equivalent of #F0D7FE */
+  --light-purple-2: #E6BAFE;
+  --light-purple-2-rgb: 230, 186, 254; /* RGB equivalent of #E6BAFE */
+}
+
+
 /* general purpose elements */
 
 h1 {
-  color: #fa6d8b;
+  color: var(--main-red);
 }
 
 h2 {
-  color: #fa6d8b;
+  color: var(--light-red-1);
 }
 
 h3 {
-  color: #fa6d8b;
+  color: var(--light-red-1);
 }
 
 h4 {
-  color: #fa6d8b;
+  color: var(--light-red-1);
 }
 
 ._flx {
@@ -47,6 +80,132 @@ h4 {
   font-weight: 500;
   color: #587292;
 }
+
+body {
+  font-family: "Open Sans",  Arial, sans-serif;
+  color: var(--color-text-normal);
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  margin: 60px 40px 40px 40px;
+  /*top: 40px;*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(var(--gray-4-rgb), 0.2);
+  z-index: 1000;
+  padding: 10px;
+  justify-content: center;
+}
+.navbar img {
+  height: 40px;
+  margin-right: 20px;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.navbar li {
+  position: relative;
+  margin: 0 15px;
+}
+.navbar a {
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  color: var(--color-text-normal);
+}
+.navbar a:hover {
+  background-color: var(--gray-2);
+  border-radius: 5px;
+}
+.navbar a.active {
+  background-color: var(--gray-2);
+  color: black;
+  border-radius: 5px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: var(--gray-2);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.content {
+  display: none;
+  padding: 25px 45px 20px 40px;
+}
+
+.code-block {
+  position: relative;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 10px;
+  padding-left: 20px;
+  margin: 20px;
+  font-family: monospace;
+  text-align: left;
+  overflow: auto;
+}
+
+pre {
+  margin: unset;
+}
+
+code {
+  border-radius: .25rem;
+  font-family: monospace;
+  padding: .125rem .25rem;
+  --tw-ring-inset: inset;
+  font-size: .9em;
+  font-weight: inherit;
+  background-color: rgba(var(--light-red-2-rgb), 0.2);
+  :hover{
+    background-color: rgba(var(--light-red-2-rgb), 0.3);
+  }
+}
+
+
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  font-size: 16px;
+}
+.copy-button i {
+  margin-left: 5px;
+}
+.code-block:hover .copy-button {
+  display: flex;
+}
+
 
 /* fixed purpose elements */
 
@@ -105,14 +264,14 @@ h4 {
   font-size: 12px;
   font-weight: 400;
   font-family: 'Open Sans';
-  color: #fa6d8b;
+  color: var(--main-red);
   text-align: center;
   margin-bottom: 12px;
 }
 
 ._footer a {
   font-weight: 400;
-  color: #fa6d8b;
+  color: var(--main-red);
   text-decoration: none;
 }
 
