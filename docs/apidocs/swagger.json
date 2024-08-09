@@ -814,8 +814,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-09-26T07:47:46.6139555Z",
-                      "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
+                      "CreatedOn": "2024-08-09T12:50:46.6029101Z",
+                      "UpdatedOn": "2024-08-09T12:50:46.6029101Z"
                     }
                   ],
                   "Files": null,
@@ -823,8 +823,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:46.6139555Z",
-                  "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
+                  "CreatedOn": "2024-08-09T12:50:46.6029101Z",
+                  "UpdatedOn": "2024-08-09T12:50:46.6029101Z"
                 },
                 {
                   "Name": "Company B",
@@ -851,8 +851,8 @@
                       "Id": 1,
                       "CreatedBy": 1,
                       "UpdatedBy": 1,
-                      "CreatedOn": "2022-09-26T07:47:46.6139555Z",
-                      "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
+                      "CreatedOn": "2024-08-09T12:50:46.6029101Z",
+                      "UpdatedOn": "2024-08-09T12:50:46.6029101Z"
                     }
                   ],
                   "Files": null,
@@ -860,8 +860,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:46.6139555Z",
-                  "UpdatedOn": "2022-09-26T07:47:46.6139555Z"
+                  "CreatedOn": "2024-08-09T12:50:46.6029101Z",
+                  "UpdatedOn": "2024-08-09T12:50:46.6029101Z"
                 }
               ]
             }
@@ -1589,8 +1589,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:46.838247Z",
-                  "UpdatedOn": "2022-09-26T07:47:46.838247Z"
+                  "CreatedOn": "2024-08-09T12:50:46.8211257Z",
+                  "UpdatedOn": "2024-08-09T12:50:46.8211257Z"
                 }
               ]
             }
@@ -2110,7 +2110,7 @@
           "Documents - Credit Notes"
         ],
         "summary": "Returns all creditNotes",
-        "description": "A creditNote represents an outgoing creditNote you send to your customers.",
+        "description": "A creditNote represents an outgoing creditNote you send to your customers.\r\n            Use expand=CancellationInformation to get information of\r\n            canceled credit note as well.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2131,6 +2131,7 @@
           "Documents - Credit Notes"
         ],
         "summary": "Returns the creditNote with the specified id",
+        "description": "A creditNote represents an outgoing creditNote you send to your customers.\r\n            Use expand=CancellationInformation to get information of\r\n            canceled credit note as well.",
         "parameters": [
           {
             "name": "Id",
@@ -2797,8 +2798,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:47.4711506Z",
-                  "UpdatedOn": "2022-09-26T07:47:47.4711506Z"
+                  "CreatedOn": "2024-08-09T12:50:47.2437313Z",
+                  "UpdatedOn": "2024-08-09T12:50:47.2437313Z"
                 },
                 {
                   "Name": "7 Days",
@@ -2813,8 +2814,8 @@
                   "Id": 0,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:47.4711506Z",
-                  "UpdatedOn": "2022-09-26T07:47:47.4711506Z"
+                  "CreatedOn": "2024-08-09T12:50:47.2437313Z",
+                  "UpdatedOn": "2024-08-09T12:50:47.2437313Z"
                 }
               ]
             }
@@ -2878,8 +2879,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:47.540658Z",
-                  "UpdatedOn": "2022-09-26T07:47:47.540658Z"
+                  "CreatedOn": "2024-08-09T12:50:47.2889393Z",
+                  "UpdatedOn": "2024-08-09T12:50:47.2889393Z"
                 },
                 {
                   "Name": "Akonto",
@@ -2890,8 +2891,8 @@
                   "Id": 1,
                   "CreatedBy": 1,
                   "UpdatedBy": 1,
-                  "CreatedOn": "2022-09-26T07:47:47.540658Z",
-                  "UpdatedOn": "2022-09-26T07:47:47.540658Z"
+                  "CreatedOn": "2024-08-09T12:50:47.2889393Z",
+                  "UpdatedOn": "2024-08-09T12:50:47.2889393Z"
                 }
               ]
             }
@@ -3810,6 +3811,38 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Documents - Planned Revenues"
+        ],
+        "summary": "Deletes a planned revenue",
+        "description": "Deletes the planned revenue with the specified id",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "description": "key: Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "description": "If-Match header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NoContent",
+            "schema": {
+              "$ref": "#/definitions/Object"
+            }
+          }
+        }
       }
     },
     "/v1/PlannedRevenues({Id})/do.UpdateProbability": {
@@ -4006,6 +4039,127 @@
         }
       }
     },
+    "/v1/PlannedRevenues({Id})/Positions({PositionId})/CustomFields": {
+      "get": {
+        "tags": [
+          "Documents - Planned Revenues"
+        ],
+        "summary": "Returns all custom fields of the planned revenue positions",
+        "description": "A custom field contains a value for a certain custom field definition and is always linked to a certain entity that has custom fields, like a project.",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomField"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/PlannedRevenues({Id})/Positions({PositionId})/CustomFields({CustomFieldDefinitionId})": {
+      "get": {
+        "tags": [
+          "Documents - Planned Revenues"
+        ],
+        "summary": "Returns the custom field with the specified id of the sel...",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomFieldDefinitionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Documents - Planned Revenues"
+        ],
+        "summary": "Updates an existing custom field of the planned revenue p...",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PositionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomFieldDefinitionId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "CustomField",
+            "in": "body",
+            "description": "The customfield body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomField"
+            }
+          }
+        }
+      }
+    },
     "/v1/Quotations": {
       "get": {
         "tags": [
@@ -4177,7 +4331,9 @@
                     "Sent",
                     "Accepted",
                     "Declined",
-                    "Canceled"
+                    "Canceled",
+                    "Share1",
+                    "Share2"
                   ],
                   "type": "string"
                 }
@@ -9932,6 +10088,14 @@
               "description": "Whether this is an internal project template without a company or with a company",
               "type": "boolean"
             },
+            "ProjectStatus": {
+              "description": "All project status that are related to the template",
+              "type": "array",
+              "items": {
+                "description": "Represents the status of a project",
+                "type": "object"
+              }
+            },
             "Id": {
               "format": "int32",
               "description": "The unique identifier of this entity",
@@ -10214,6 +10378,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -11078,6 +11246,10 @@
               "ContactPerson": {
                 "description": "The contact person that this contact was with",
                 "type": "object"
+              },
+              "Files": {
+                "description": "The files releated to the contact history",
+                "type": "array"
               },
               "Id": {
                 "format": "int32",
@@ -11952,6 +12124,10 @@
               "description": "The employee number of the user",
               "type": "string"
             },
+            "Department": {
+              "description": "The department of the user",
+              "type": "string"
+            },
             "BirthDate": {
               "format": "date-time",
               "description": "The birth date of the user",
@@ -12709,6 +12885,52 @@
           "description": "Whether this is an internal project template without a company or with a company",
           "type": "boolean"
         },
+        "ProjectStatus": {
+          "description": "All project status that are related to the template",
+          "type": "array",
+          "items": {
+            "description": "Represents the status of a project",
+            "required": [
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "description": "The name of the project status",
+                "type": "string"
+              },
+              "IsInProgress": {
+                "description": "Whether this project is in progress or not",
+                "type": "boolean"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
+            }
+          }
+        },
         "Id": {
           "format": "int32",
           "description": "The unique identifier of this entity",
@@ -13224,6 +13446,10 @@
                 "description": "The employee number of the user",
                 "type": "string"
               },
+              "Department": {
+                "description": "The department of the user",
+                "type": "string"
+              },
               "BirthDate": {
                 "format": "date-time",
                 "description": "The birth date of the user",
@@ -13600,6 +13826,10 @@
         },
         "EmployeeNumber": {
           "description": "The employee number of the user",
+          "type": "string"
+        },
+        "Department": {
+          "description": "The department of the user",
           "type": "string"
         },
         "BirthDate": {
@@ -14655,6 +14885,10 @@
               "description": "The employee number of the user",
               "type": "string"
             },
+            "Department": {
+              "description": "The department of the user",
+              "type": "string"
+            },
             "BirthDate": {
               "format": "date-time",
               "description": "The birth date of the user",
@@ -15301,6 +15535,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -16265,6 +16503,10 @@
               "description": "The employee number of the user",
               "type": "string"
             },
+            "Department": {
+              "description": "The department of the user",
+              "type": "string"
+            },
             "BirthDate": {
               "format": "date-time",
               "description": "The birth date of the user",
@@ -16498,6 +16740,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -17308,6 +17554,70 @@
               "format": "date-time",
               "description": "The last date and time this entity was updated, in UTC",
               "type": "string"
+            }
+          }
+        },
+        "Files": {
+          "description": "The files releated to the contact history",
+          "type": "array",
+          "items": {
+            "description": "A file represents a user upload or HQ-generated PDF documents.",
+            "required": [
+              "Id"
+            ],
+            "type": "object",
+            "properties": {
+              "Name": {
+                "description": "The name of the file",
+                "type": "string"
+              },
+              "Size": {
+                "format": "double",
+                "description": "The size in bytes",
+                "type": "number"
+              },
+              "HasContent": {
+                "description": "Returns true if the file has content (was uploaded yet)",
+                "type": "boolean"
+              },
+              "IsDirectory": {
+                "description": "Returns true if the file entity is a directory, otherwise false",
+                "type": "boolean"
+              },
+              "DirectoryId": {
+                "format": "int32",
+                "description": "The id of the parent directory",
+                "type": "integer"
+              },
+              "FileRelations": {
+                "description": "List of all relations of a",
+                "type": "array"
+              },
+              "Id": {
+                "format": "int32",
+                "description": "The unique identifier of this entity",
+                "type": "integer"
+              },
+              "CreatedBy": {
+                "format": "int32",
+                "description": "The id of the user who created this entity",
+                "type": "integer"
+              },
+              "UpdatedBy": {
+                "format": "int32",
+                "description": "The id of the last user who modified this entity",
+                "type": "integer"
+              },
+              "CreatedOn": {
+                "format": "date-time",
+                "description": "The date and time this entity was created, in UTC",
+                "type": "string"
+              },
+              "UpdatedOn": {
+                "format": "date-time",
+                "description": "The last date and time this entity was updated, in UTC",
+                "type": "string"
+              }
             }
           }
         },
@@ -18554,6 +18864,10 @@
               "description": "The employee number of the user",
               "type": "string"
             },
+            "Department": {
+              "description": "The department of the user",
+              "type": "string"
+            },
             "BirthDate": {
               "format": "date-time",
               "description": "The birth date of the user",
@@ -18981,6 +19295,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -22363,6 +22681,10 @@
                 "description": "The contact person that this contact was with",
                 "type": "object"
               },
+              "Files": {
+                "description": "The files releated to the contact history",
+                "type": "array"
+              },
               "Id": {
                 "format": "int32",
                 "description": "The unique identifier of this entity",
@@ -22819,6 +23141,9 @@
         },
         "Users": {
           "type": "string"
+        },
+        "Language": {
+          "type": "string"
         }
       }
     },
@@ -22854,6 +23179,10 @@
               "Status": {
                 "description": "The status of this credit note",
                 "type": "string"
+              },
+              "CancellationInformation": {
+                "description": "The list of cancellations",
+                "type": "array"
               },
               "Currency": {
                 "description": "The ISO 4217 code of the currency of this document.",
@@ -23146,6 +23475,10 @@
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
               },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
+              },
               "Text": {
                 "description": "The position text, as HTML",
                 "type": "string"
@@ -23254,6 +23587,22 @@
             "Approved"
           ],
           "type": "string"
+        },
+        "CancellationInformation": {
+          "description": "The list of cancellations",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Id": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Number": {
+                "type": "string"
+              }
+            }
+          }
         },
         "Currency": {
           "description": "The ISO 4217 code of the currency of this document.",
@@ -23987,6 +24336,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -24849,6 +25202,23 @@
             }
           }
         },
+        "Interval": {
+          "description": "The interval of the recurrence.",
+          "enum": [
+            "Once",
+            "Annually",
+            "HalfAnnually",
+            "QuarterAnnually",
+            "Monthly",
+            "Weekly",
+            "TwoYears",
+            "ThreeYears",
+            "FourYears",
+            "FiveYears",
+            "Fortnightly"
+          ],
+          "type": "string"
+        },
         "Text": {
           "description": "The position text, as HTML",
           "type": "string"
@@ -25126,6 +25496,18 @@
         "UpdatedOn": {
           "format": "date-time",
           "description": "The last date and time this entity was updated, in UTC",
+          "type": "string"
+        }
+      }
+    },
+    "CancellationInformation": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Number": {
           "type": "string"
         }
       }
@@ -26125,6 +26507,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -27261,6 +27647,10 @@
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
               },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
+              },
               "Text": {
                 "description": "The position text, as HTML",
                 "type": "string"
@@ -27650,6 +28040,10 @@
               "UserReportings": {
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
+              },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
               },
               "Text": {
                 "description": "The position text, as HTML",
@@ -28487,6 +28881,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -29361,6 +29759,23 @@
             }
           }
         },
+        "Interval": {
+          "description": "The interval of the recurrence.",
+          "enum": [
+            "Once",
+            "Annually",
+            "HalfAnnually",
+            "QuarterAnnually",
+            "Monthly",
+            "Weekly",
+            "TwoYears",
+            "ThreeYears",
+            "FourYears",
+            "FiveYears",
+            "Fortnightly"
+          ],
+          "type": "string"
+        },
         "Text": {
           "description": "The position text, as HTML",
           "type": "string"
@@ -29999,6 +30414,10 @@
               "UserReportings": {
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
+              },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
               },
               "Text": {
                 "description": "The position text, as HTML",
@@ -30827,6 +31246,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -32436,6 +32859,10 @@
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
               },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
+              },
               "Text": {
                 "description": "The position text, as HTML",
                 "type": "string"
@@ -33524,6 +33951,10 @@
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
               },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
+              },
               "Text": {
                 "description": "The position text, as HTML",
                 "type": "string"
@@ -33975,6 +34406,10 @@
               "UserReportings": {
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
+              },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
               },
               "Text": {
                 "description": "The position text, as HTML",
@@ -34779,7 +35214,9 @@
             "Sent",
             "Accepted",
             "Declined",
-            "Canceled"
+            "Canceled",
+            "Share1",
+            "Share2"
           ],
           "type": "string"
         },
@@ -34839,6 +35276,10 @@
               "UserReportings": {
                 "description": "The user reportings which have been billed with this document position",
                 "type": "array"
+              },
+              "Interval": {
+                "description": "The interval of the recurrence.",
+                "type": "string"
               },
               "Text": {
                 "description": "The position text, as HTML",
@@ -35667,6 +36108,10 @@
             },
             "EmployeeNumber": {
               "description": "The employee number of the user",
+              "type": "string"
+            },
+            "Department": {
+              "description": "The department of the user",
               "type": "string"
             },
             "BirthDate": {
@@ -37846,6 +38291,10 @@
                 "description": "Whether this is an internal project template without a company or with a company",
                 "type": "boolean"
               },
+              "ProjectStatus": {
+                "description": "All project status that are related to the template",
+                "type": "array"
+              },
               "Id": {
                 "format": "int32",
                 "description": "The unique identifier of this entity",
@@ -38404,6 +38853,10 @@
               },
               "EmployeeNumber": {
                 "description": "The employee number of the user",
+                "type": "string"
+              },
+              "Department": {
+                "description": "The department of the user",
                 "type": "string"
               },
               "BirthDate": {
