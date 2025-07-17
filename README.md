@@ -1,3 +1,10 @@
+
+# ⚠️ This helpcenter and forum is archived 
+Please visit our new [new forum](https://github.com/everii-Group/helloHQ-developer-docs/issues)
+or our [developer page](https://developer.hellohq.io).
+
+-----------------------------------------------------------------------------
+
 # Hi, nice to see you on hellohq!
 
 This is the developer guide for the HQ API, which allows developers access to a
